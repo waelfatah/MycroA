@@ -2,14 +2,15 @@ package tn.saturn.spring.entities;
 
 import java.io.Serializable;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-@Entity
+import javax.persistence.Table;
+@Entity 
+@Table(name ="CLAIM")
 public class Claim implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +27,5 @@ public class Claim implements Serializable {
 	
 	@Column(name="visibility")
 	private boolean visibility;
-	
-	@OneToOne
-	private CaseInsurance fkCaise;
+
 }
