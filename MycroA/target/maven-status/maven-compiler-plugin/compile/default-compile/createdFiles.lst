@@ -1,16 +1,1 @@
-tn\saturn\spring\controller\EmployeeRestConrolImp.class
-tn\saturn\spring\entities\CaseInsurance.class
-tn\saturn\spring\entities\Contract.class
-tn\saturn\spring\entities\Role.class
-tn\saturn\spring\repositories\EmployeeRepository.class
-tn\saturn\spring\services\IEmployeeService.class
-tn\saturn\spring\entities\Employee.class
-tn\saturn\spring\entities\Credit.class
-tn\saturn\spring\entities\Client.class
-tn\saturn\spring\controller\EmployeeControlImp.class
-tn\saturn\spring\entities\Claim.class
 tn\saturn\spring\MycroAApplication.class
-tn\saturn\spring\services\EmployeeServiceImpl.class
-tn\saturn\spring\entities\InsuredProperty.class
-tn\saturn\spring\entities\PropertyType.class
-tn\saturn\spring\entities\Complaint.class

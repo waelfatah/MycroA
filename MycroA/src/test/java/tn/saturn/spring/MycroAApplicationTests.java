@@ -13,21 +13,21 @@ import org.springframework.test.context.junit4.SpringRunner;
 import tn.saturn.spring.entities.Client;
 import tn.saturn.spring.entities.Complaint;
 import tn.saturn.spring.entities.Contract;
-import tn.saturn.spring.entities.Employee;
 import tn.saturn.spring.entities.InsuredProperty;
 import tn.saturn.spring.entities.PropertyType;
-import tn.saturn.spring.entities.Role;
-import tn.saturn.spring.services.IEmployeeService;
-
+import tn.saturn.spring.services.IComplaintService;
+import tn.saturn.spring.services.IContractService;
+import tn.saturn.spring.services.IPropertyService;;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MycroAApplication.class)
 public class MycroAApplicationTests {
 	@Autowired
-	IEmployeeService es;
-	
-
-	
+	IPropertyService ps;
+	@Autowired
+	IContractService cs;
+	@Autowired
+	IComplaintService cms;
 
 	@Test
 	public void contextLoads() throws ParseException{
@@ -41,16 +41,14 @@ public class MycroAApplicationTests {
 		// System.out.println("Date modifiée : " + date2);
 		 
 		 //InsuredProperty ip = new InsuredProperty(10000.0f, PropertyType.VEHICULE, true);
-		// Contract contract = new Contract(d1,d2,"Toute option",32.5f,1,true,1,1);
-		 Employee employee = new Employee("employee1","Employee1",22414850,12036989, "feryel.dhaouadi@esprit.tn", 1333.2f, "em1", "em1", "carthage", 2,Role.EXPERT,true);
-				
-		 System.out.println(employee.getIdEmployee());
-		// Complaint complaint=new Complaint("category","description",true);
-		 es.addEmployee(employee);
+		 //Contract contract = new Contract(d1,d2,"Toute option",32.5f,1,true,1,1);
+		// System.out.println(contract.getIdClient());
+		 Complaint complaint=new Complaint("category","description",true);
+		 cms.addComplaint(complaint);
 		 //cs.addContract(contract);
 		//ps.addInsuredProperty(ip);
-		 for(Employee EmployeeE:es.retrieveAllEmployees()){
-			 System.out.println(EmployeeE.toString());
+		 for(InsuredProperty insuredP:ps.retrieveAllVisibleInsuredProperties()){
+			 System.out.println(insuredP.toString());
 		 }
 	}
 	

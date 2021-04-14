@@ -11,11 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
-@Entity
+@Entity 
+@Table(name ="CONTRACT")
 public class Contract implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -48,11 +50,9 @@ public class Contract implements Serializable{
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Client fkClient;
 	
-	@OneToOne(mappedBy="fkContract")
+	@OneToOne
 	private InsuredProperty fkInsuredProperty;
 	
-	@OneToOne
-	private CaseInsurance fkCase;
 
 	public int getIdContract() {
 		return idContract;
@@ -126,12 +126,9 @@ public class Contract implements Serializable{
 		this.fkInsuredProperty = fkInsuredProperty;
 	}
 
-	public CaseInsurance getFkCase() {
-		return fkCase;
+	public Contract() {
 	}
 
-	public void setFkCase(CaseInsurance fkCase) {
-		this.fkCase = fkCase;
-	}
+	
 	
 }
