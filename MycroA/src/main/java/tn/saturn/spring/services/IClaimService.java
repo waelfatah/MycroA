@@ -12,6 +12,6 @@ public interface IClaimService {
 	public void setClaimRepository(ClaimRepository claimRepository);
 	public Claim addClaim(Claim c);
 	public Claim updateClaim(Claim u);
-	public Claim retrieveClaim(String id);
-	public void deleteClaims(String id);
+	public Claim retrieveClaim(Integer id);
+	public void deleteClaims(Integer id);
 }

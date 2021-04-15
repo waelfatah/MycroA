@@ -37,7 +37,7 @@ public class ClaimServiceImpl implements IClaimService{
 	
 	@Override
 	public Claim addClaim(Claim c){
-		long t = c.getIdClaim();
+		Integer t = c.getIdClaim();
 		if (!claimRepository.findById(t).isPresent()){
 			return claimRepository.save(c);
 		}else{
@@ -48,7 +48,7 @@ public class ClaimServiceImpl implements IClaimService{
 	
 	
 	public Claim updateClaim(Claim u){
-		long t = u.getIdClaim();
+		Integer t = u.getIdClaim();
 		if (claimRepository.findById(t).isPresent()){
 			return claimRepository.save(u);
 		}else{
@@ -58,15 +58,15 @@ public class ClaimServiceImpl implements IClaimService{
 	
 	
 	@Override
-	public Claim retrieveClaim(String id){
-		if(claimRepository.findById(Long.parseLong(id)).isPresent()){
-			return claimRepository.findById(Long.parseLong(id)).get();
+	public Claim retrieveClaim(Integer id){
+		if(claimRepository.findById(id).isPresent()){
+			return claimRepository.findById(id).get();
 		}else{
 			return null;
 		}
 	}
 	
-	public void deleteClaims(String id){
+	public void deleteClaims(Integer id){
 		Claim c = retrieveClaim(id);
 		c.setVisibility(false);
 		updateClaim(c);

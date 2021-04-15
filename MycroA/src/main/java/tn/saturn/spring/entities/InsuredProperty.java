@@ -9,7 +9,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -34,8 +33,6 @@ public class InsuredProperty implements Serializable {
 	@Column(name="visibility")
 	private boolean visibility;
 	
-	@OneToOne
-	private Contract fkContract;
 
 	public InsuredProperty() {
 		
@@ -80,13 +77,6 @@ public class InsuredProperty implements Serializable {
 		this.visibility = visibility;
 	}
 
-	public Contract getFkContract() {
-		return fkContract;
-	}
-
-	public void setFkContract(Contract fkContract) {
-		this.fkContract = fkContract;
-	}
 
 	@Override
 	public String toString() {

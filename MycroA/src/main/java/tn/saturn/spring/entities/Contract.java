@@ -2,7 +2,6 @@ package tn.saturn.spring.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +24,7 @@ public class Contract implements Serializable{
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="idContract")
-	private int idContract; // Clé primaire
+	private Integer idContract; // Clé primaire
 	
 	@Column(name="startDateContract")
 	@Temporal (TemporalType.DATE)
@@ -39,27 +38,24 @@ public class Contract implements Serializable{
 	private String clauses;
 	
 	@Column(name="premium")
-	private float premium;
+	private Double premium;
 	
 	@Column(name="contractRank")
-	private int contractRank;
+	private Integer contractRank;
 	
 	@Column(name="visibility")
-	private boolean visibility;
+	private Boolean visibility;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Client fkClient;
 	
-	@OneToOne(mappedBy="fkContract")
-	private InsuredProperty fkInsuredProperty;
-	
 	@OneToOne
-	private CaseInsurance fkCase;
+	private InsuredProperty fkInsuredProperty;
 
-	private long idInsuredProperty;
 
-	private int idClient;
 
+	
+	
 	public int getIdContract() {
 		return idContract;
 	}
@@ -92,11 +88,11 @@ public class Contract implements Serializable{
 		this.clauses = clauses;
 	}
 
-	public float getPremium() {
+	public Double getPremium() {
 		return premium;
 	}
 
-	public void setPremium(float premium) {
+	public void setPremium(Double premium) {
 		this.premium = premium;
 	}
 
@@ -132,44 +128,21 @@ public class Contract implements Serializable{
 		this.fkInsuredProperty = fkInsuredProperty;
 	}
 
-	public CaseInsurance getFkCase() {
-		return fkCase;
-	}
-
-	public void setFkCase(CaseInsurance fkCase) {
-		this.fkCase = fkCase;
-	}
 
 	public Contract() {
 	}
 
-	public Contract(Date startDateContract, Date dueDateContract, String clauses, float premium, int contractRank,
-			boolean visibility, int idClient, long idInsuredProperty) {
+	public Contract(Date startDateContract, Date dueDateContract, String clauses, Double premium, Integer contractRank,
+			Boolean visibility) {
 		this.startDateContract = startDateContract;
 		this.dueDateContract = dueDateContract;
 		this.clauses = clauses;
 		this.premium = premium;
 		this.contractRank = contractRank;
 		this.visibility = visibility;
-		this.idClient = idClient;
-		this.idInsuredProperty = idInsuredProperty;
+
 	}
 
-	public int getIdClient() {
-		return idClient;
-	}
 
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
-	}
-
-	public long getIdInsuredProperty() {
-		return idInsuredProperty;
-	}
-
-	public void setIdInsuredProperty(long idInsuredProperty) {
-		this.idInsuredProperty = idInsuredProperty;
-	}
-	
 	
 }

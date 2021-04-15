@@ -1,18 +1,18 @@
 package tn.saturn.spring.entities;
 
 import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name ="caseinsurance")
 public class CaseInsurance implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -20,64 +20,76 @@ public class CaseInsurance implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="idCase")
-	private long idCase; // Clé primaire
+	private Integer idCase; // Clé primaire
 	
 	@Column(name="status")
-	private int status;
+	private Integer status;
 	
 	@Column(name="benefits")
-	private double benefits;
+	private Double benefits;
+	
+	@Column(name="remainingBenefits")
+	private Double remainingBenefits;
 	
 	@Column(name="benefitsType")
-	private int benefitsType;
+	private Integer benefitsType;
 
 	
-	@OneToOne(mappedBy="fkCase")
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Contract fkContract;
 	
-	@OneToOne(mappedBy="fkCase")
+	@OneToOne
 	private Claim fkClaim;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Employee> listEmployee;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Employee fkEmployee;
 
 	
 	
+	public CaseInsurance() {
+		super();
+	}
 	
 	
 	
 	
 	
-	
-	public double getBenefits() {
+	public CaseInsurance(Integer status, Double benefits, Integer benefitsType) {
+		super();
+		this.status = status;
+		this.benefits = benefits;
+		this.benefitsType = benefitsType;
+	}
+
+	public Double getBenefits() {
 		return benefits;
 	}
 
-	public void setBenefits(double benefits) {
+	public void setBenefits(Double benefits) {
 		this.benefits = benefits;
 	}
 
-	public int getBenefitsType() {
+	public Integer getBenefitsType() {
 		return benefitsType;
 	}
 
-	public void setBenefitsType(int benefitsType) {
+	public void setBenefitsType(Integer benefitsType) {
 		this.benefitsType = benefitsType;
 	}
 	
-	public long getIdCase() {
+	public Integer getIdCase() {
 		return idCase;
 	}
 
-	public void setIdCase(long idCase) {
+	public void setIdCase(Integer idCase) {
 		this.idCase = idCase;
 	}
 
-	public int getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
@@ -98,13 +110,39 @@ public class CaseInsurance implements Serializable {
 		this.fkClaim = fkClaim;
 	}
 
-	public List<Employee> getListEmployee() {
-		return listEmployee;
+
+
+
+
+
+	public Employee getFkEmployee() {
+		return fkEmployee;
 	}
 
-	public void setListEmployee(List<Employee> listEmployee) {
-		this.listEmployee = listEmployee;
+
+
+
+
+	public void setFkEmployee(Employee fkEmployee) {
+		this.fkEmployee = fkEmployee;
 	}
+
+
+
+
+
+	public Double getRemainingBenefits() {
+		return remainingBenefits;
+	}
+
+
+
+
+
+	public void setRemainingBenefits(Double remainingBenefits) {
+		this.remainingBenefits = remainingBenefits;
+	}
+	
 	
 	
 }

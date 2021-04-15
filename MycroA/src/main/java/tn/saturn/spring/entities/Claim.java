@@ -1,58 +1,67 @@
 package tn.saturn.spring.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
+@Table(name ="Claim")
 public class Claim implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="idClaim")
-	private long idClaim; // Clé primaire
+	private Integer idClaim; // Clé primaire
+	
 	
 	@Column(name="claimType")
+	@Enumerated(EnumType.STRING)
 	private ClaimType claimType;
 	
 	@Column(name="descriptionClaim")
 	private String descriptionClaim;
 	
+	@Column(name="claimDate")
+	@Temporal (TemporalType.DATE)
+	private Date claimDate;
+	
 	@Column(name="visibility")
 	private boolean visibility;
-	
-	@OneToOne
-	private CaseInsurance fkCase;
-	
-	
-	
-	
-	
+
 	
 	
 	
 
-	public Claim(long idClaim, ClaimType claimType, String descriptionClaim, boolean visibility, CaseInsurance fkCase) {
+	public Claim() {
+		super();
+	}
+
+	public Claim(Integer idClaim, ClaimType claimType, String descriptionClaim, boolean visibility) {
 		super();
 		this.idClaim = idClaim;
 		this.claimType = claimType;
 		this.descriptionClaim = descriptionClaim;
 		this.visibility = visibility;
-		this.fkCase = fkCase;
 	}
 
-	public long getIdClaim() {
+	public Integer getIdClaim() {
 		return idClaim;
 	}
 
-	public void setIdClaim(long idClaim) {
+	public void setIdClaim(Integer idClaim) {
 		this.idClaim = idClaim;
 	}
 
@@ -80,16 +89,15 @@ public class Claim implements Serializable {
 		this.visibility = visibility;
 	}
 
-	public CaseInsurance getFkCaise() {
-		return fkCase;
+	public Date getClaimDate() {
+		return claimDate;
 	}
 
-	public void setFkCaise(CaseInsurance fkCase) {
-		this.fkCase = fkCase;
+	public void setClaimDate(Date claimDate) {
+		this.claimDate = claimDate;
 	}
 	
 	
-	
-	
-	
+
+
 }

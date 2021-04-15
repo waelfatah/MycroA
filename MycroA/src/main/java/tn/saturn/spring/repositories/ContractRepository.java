@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import tn.saturn.spring.entities.Contract;
 
-public interface ContractRepository extends CrudRepository<Contract,Long >{
+public interface ContractRepository extends CrudRepository<Contract,Integer>{
 
 }

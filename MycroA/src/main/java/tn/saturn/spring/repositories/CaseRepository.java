@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import tn.saturn.spring.entities.CaseInsurance;
+import tn.saturn.spring.entities.Contract;
 
 @Repository
-public interface CaseRepository extends CrudRepository<CaseInsurance, Long>{
+public interface CaseRepository extends CrudRepository<CaseInsurance, Integer>{
 	@Query("SELECT u FROM CaseInsurance u WHERE u.status=0")
 	 	List<CaseInsurance> getAllWaitingCases();
 	
@@ -16,6 +17,10 @@ public interface CaseRepository extends CrudRepository<CaseInsurance, Long>{
 	
 	@Query("SELECT u FROM CaseInsurance u WHERE u.status=2")
 		List<CaseInsurance> getAllCompletedCases();
+	
+	
+	@Query("SELECT count(*) FROM CaseInsurance u WHERE u.fkContract= ?1")
+		Integer getCountContractPerCase(Contract contratId);
 	
 	
 
