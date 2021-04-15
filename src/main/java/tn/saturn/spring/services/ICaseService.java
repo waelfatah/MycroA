@@ -19,4 +19,5 @@ public interface ICaseService {
 	public void affectContractToCase(Integer idCase,Integer idContrat);
 	public void setBenefitsType(Integer idCase);
 	public void affectRemainingBenefits(Integer idCase);
+	public void refuseCase(Integer idCase);
 }

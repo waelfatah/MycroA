@@ -6,10 +6,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import tn.saturn.spring.entities.Balance;
 import tn.saturn.spring.entities.CaseInsurance;
 import tn.saturn.spring.entities.ClaimType;
+import tn.saturn.spring.entities.Client;
+import tn.saturn.spring.repositories.BalanceRepository;
 import tn.saturn.spring.repositories.CaseRepository;
 import tn.saturn.spring.repositories.ClaimRepository;
+import tn.saturn.spring.repositories.ClientRepository;
 import tn.saturn.spring.repositories.ContractRepository;
 import tn.saturn.spring.repositories.EmployeeRepository;
 
@@ -27,6 +32,19 @@ public class CaseServiceImpl implements ICaseService{
 	
 	@Autowired
 	ContractRepository contratRepository;
+	
+	@Autowired
+	BalanceRepository balanceRepository;
+	
+	@Autowired
+	IBalanceService balanceService;
+	
+	@Autowired
+	IEmailService emailService;
+	
+	@Autowired
+	ClientRepository clientRepository;
+	
 	
 	public CaseRepository getCaseRepository() { return caseRepository; }
 	
@@ -87,7 +105,7 @@ public class CaseServiceImpl implements ICaseService{
 				c.setStatus(1);
 				caseRepository.save(c);
 			}else{
-				c.setBenefits(c.getFkContract().getFkInsuredProperty().getPropertyValue()*0.8);
+				c.setBenefits(c.getFkContract().getFkInsuredProperty().getPropertyValue()*0.6);
 				c.setRemainingBenefits(0.0);
 				c.setStatus(1);
 				caseRepository.save(c);
@@ -99,20 +117,29 @@ public class CaseServiceImpl implements ICaseService{
 	
 	
 	
-	//Fonction pour changer le type de paiement pour le client avec transfert de status de uncompleted a completed
+	
+	
+	
+//Fonction pour changer le type de paiement pour le client avec transfert de status de uncompleted a completed et condition sur le status car le dossier doit etre en cours de traitement et affection selon le nombre de contrat
 	public void setBenefitsType(Integer idCase){
 		CaseInsurance c = new CaseInsurance();
 		c = caseRepository.findById(idCase).get();
+		Balance b = balanceRepository.findById(c.getFkContract().getFkClient().getFkBalance().getIdBalance()).get();
 		Double temp = c.getBenefits();
+		Double amount ;
 		if (c.getStatus()==1){
 			if (caseRepository.getCountContractPerCase(c.getFkContract())<3){
 				c.setBenefitsType(1);
+				amount = temp*0.7;
 				c.setRemainingBenefits(temp*0.3);
+				balanceService.addAmount(amount,b);
+				emailService.sendEmailAmountReceived(c.getFkContract().getFkClient().getMailClient(), b.getAmount());
 			}else{
-				c.setBenefitsType(2);
+				amount = temp*0.5;
 				c.setRemainingBenefits(temp*0.5);
+				balanceService.addAmount(amount,b);
+				emailService.sendEmailAmountReceived(c.getFkContract().getFkClient().getMailClient(), b.getAmount());
 			}
-			c.setStatus(2);
 			caseRepository.save(c);
 		}else{
 			System.out.println("Impossible");
@@ -120,19 +147,62 @@ public class CaseServiceImpl implements ICaseService{
 	}
 	
 	
-	//AFFECTER LE reste de l'argent au client
+	
+	
+	
+	
+	
+	//AFFECTER LE reste de l'argent au client PERIODE DE GRACE si le salaire est inferieur a 600 peut lui rendre directement l'argent sinon condition sur la date elle doit etre superieur a 2 mois
+	@SuppressWarnings("deprecation")
 	public void affectRemainingBenefits(Integer idCase){
 		CaseInsurance c = new CaseInsurance();
+		Client client = new Client();
 		c = caseRepository.findById(idCase).get();
+		client = clientRepository.findById(c.getFkContract().getFkClient().getIdClient()).get();
+		Balance b = balanceRepository.findById(c.getFkContract().getFkClient().getFkBalance().getIdBalance()).get();
 		Date today = new Date();
-		@SuppressWarnings("deprecation")
-		int temp = today.getMonth() - c.getFkClaim().getClaimDate().getMonth();
-		if (temp>3){
-			c.setRemainingBenefits(0.0);
-			caseRepository.save(c);
+		int tempMonth = today.getMonth() - c.getFkClaim().getClaimDate().getMonth();
+		int tempYear = today.getYear() - c.getFkClaim().getClaimDate().getYear();
+		if(c.getStatus()==1 && c.getBenefitsType()!=null){
+				if (client.getSalary()<600.0){
+					balanceService.addAmount(c.getRemainingBenefits(),b);
+					c.setRemainingBenefits(0.0);
+					c.setStatus(2);
+					caseRepository.save(c);
+					emailService.sendEmailAmountReceived(c.getFkContract().getFkClient().getMailClient(), b.getAmount());
+				}else{
+					if (tempMonth>2 || tempYear>=1){
+						balanceService.addAmount(c.getRemainingBenefits(),b);
+						c.setRemainingBenefits(0.0);
+						c.setStatus(2);
+						caseRepository.save(c);
+						emailService.sendEmailAmountReceived(c.getFkContract().getFkClient().getMailClient(), b.getAmount());
+					}else{
+						System.out.println("Trop tot pour lui rendre l'argent");
+					}
+				}
 		}else{
-			System.out.println("Trop tot pour lui rendre l'argent");
+			System.out.println("Le status du dossier est erroné ou pas de beneficeTypes");
 		}
+	}
+	
+	
+	
+	//REFUS du dossier selon l'expert
+	public void refuseCase(Integer idCase){
+		CaseInsurance c = new CaseInsurance();
+		c = caseRepository.findById(idCase).get();
+		if(c.getStatus()!=2){
+			c.setBenefits(0.0);
+			c.setRemainingBenefits(0.0);
+			c.setStatus(2);
+			c.setBenefitsType(0);
+			caseRepository.save(c);
+			emailService.sendEmailRefuseCase(c.getFkContract().getFkClient().getMailClient());
+		}else{
+			System.out.println("Case already completed");
+		}
+			
 	}
 	
 	

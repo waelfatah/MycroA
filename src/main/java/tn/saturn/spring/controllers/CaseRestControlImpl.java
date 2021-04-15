@@ -98,5 +98,20 @@ public class CaseRestControlImpl {
 				public void AffectRemainingBenefits(@PathVariable("idCase") Integer idCase) {
 					caseService.affectRemainingBenefits(idCase);
 				}
+				
+				
+		// http://localhost:8081/SpringMVC/refuseCases/{idCase}        A MODIFIER !!!!!!
+				@PutMapping("/refuseCase/{idCase}")
+				@ResponseBody
+				public void refuseCase(@PathVariable("idCase") Integer idCase) {
+					caseService.refuseCase(idCase);
+				}
+				
+				
+				
+				
+				
+				
+		
 		
 }

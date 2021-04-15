@@ -21,6 +21,31 @@ private static final long serialVersionUID = 1L;
 	
 	@Column(name="amount")
 	private Double amount;
+
+	public Integer getIdBalance() {
+		return idBalance;
+	}
+
+	public void setIdBalance(Integer idBalance) {
+		this.idBalance = idBalance;
+	}
+
+	public Double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
+	public Balance(Double amount) {
+		super();
+		this.amount = amount;
+	}
+	
+	public Balance() {
+		super();
+	}
 	
 	
 	
