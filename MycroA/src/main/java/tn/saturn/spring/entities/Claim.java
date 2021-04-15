@@ -27,5 +27,7 @@ public class Claim implements Serializable {
 	
 	@Column(name="visibility")
 	private boolean visibility;
-
+	
+	@OneToOne
+	private Case fkCaise;
 }

@@ -41,13 +41,13 @@ public class MycroAApplicationTests {
 		// System.out.println("Date modifiée : " + date2);
 		 
 		 //InsuredProperty ip = new InsuredProperty(10000.0f, PropertyType.VEHICULE, true);
-		 //Contract contract = new Contract(d1,d2,"Toute option",32.5f,1,true,1,1);
-		// System.out.println(contract.getIdClient());
+		 Contract contract = new Contract(d1,d2,"Toute option",32.5f,1,true,1,1);
+		 System.out.println(contract.getIdClient());
 		 Complaint complaint=new Complaint("category","description",true);
 		 cms.addComplaint(complaint);
 		 //cs.addContract(contract);
 		//ps.addInsuredProperty(ip);
-		 for(InsuredProperty insuredP:ps.retrieveAllVisibleInsuredProperties()){
+		 for(InsuredProperty insuredP:ps.retrieveAllInsuredProperties()){
 			 System.out.println(insuredP.toString());
 		 }
 	}

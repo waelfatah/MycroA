@@ -66,6 +66,8 @@ public class Employee implements Serializable {
 	@Column(name="visibility")
 	private boolean visibility;
 	
+	@ManyToMany(mappedBy="listEmployee",cascade = CascadeType.ALL)
+	private List<Case> listCase;
 
 	
 	

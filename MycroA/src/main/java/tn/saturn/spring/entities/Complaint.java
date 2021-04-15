@@ -1,13 +1,18 @@
 package tn.saturn.spring.entities;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -21,7 +26,7 @@ public class Complaint implements Serializable  {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="idComplaint")
-	private int idComplaint; // Clé primaire
+	private Long idComplaint; // Clé primaire
 	
 	@Column(name="category")
 	private String category;
@@ -32,23 +37,41 @@ public class Complaint implements Serializable  {
 	@Column(name="visibility")
 	private boolean visibility;
 	
+	@Column(name="type")
+	@Enumerated(EnumType.STRING)
+	private Type type;
+	
+	@Column(name="isTreaty")
+	private boolean isTreaty;
+	
+	@Column(name="ratingComplaint")
+	private int ratingComplaint;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Client fkClient;
 
 	public Complaint() {
+		this.visibility = true;
+		this.ratingComplaint=0;
+		this.isTreaty=false;
 	}
 
-	public Complaint( String category, String description, boolean visibility) {
+	public Complaint( String category, String description,Client client,Type type) {
 		this.category = category;
 		this.description = description;
-		this.visibility = visibility;
+		this.visibility = true;
+		this.ratingComplaint=0;
+		this.fkClient=client;
+		this.type=type;
+		this.isTreaty=false;
 	}
 
-	public int getIdComplaint() {
+	public Long getIdComplaint() {
+		
 		return idComplaint;
 	}
 
-	public void setIdComplaint(int idComplaint) {
+	public void setIdComplaint(Long idComplaint) {
 		this.idComplaint = idComplaint;
 	}
 
@@ -68,7 +91,7 @@ public class Complaint implements Serializable  {
 		this.description = description;
 	}
 
-	public boolean isVisibility() {
+	public boolean getVisibility() {
 		return visibility;
 	}
 
@@ -83,12 +106,34 @@ public class Complaint implements Serializable  {
 	public void setFkClient(Client fkClient) {
 		this.fkClient = fkClient;
 	}
-
-	@Override
-	public String toString() {
-		return "Complaint [idComplaint=" + idComplaint + ", category=" + category + ", description=" + description
-				+ ", visibility=" + visibility + ", fkClient=" + fkClient + "]";
+	
+	
+	
+	public int getRatingComplaint() {
+		return ratingComplaint;
 	}
+
+	public void setRatingComplaint(int ratingComplaint) {
+		this.ratingComplaint = ratingComplaint;
+	}
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+	public boolean isTreaty() {
+		return isTreaty;
+	}
+
+	public void setTreaty(boolean isTreaty) {
+		this.isTreaty = isTreaty;
+	}
+
+	
 	
 	
 }
