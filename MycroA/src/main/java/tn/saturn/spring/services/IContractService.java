@@ -15,4 +15,7 @@ public interface IContractService {
 	public Contract retrieveContract(String id);
 	public void affecterPropertyAContract(int propertyId, int contractId);
 	public void discountPremiumByStat(int contractId);
+	public Double PremiumManagementByClientSalary(String clientCIN);
+	public Double PremiumManagementByInsuredPropertyValue(Contract contract,double premium);
+	public Double PremiumManagementByInsuredPropertyStats(Contract contract,double premium, int propertyId);
 }
