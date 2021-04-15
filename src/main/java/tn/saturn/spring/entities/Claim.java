@@ -49,9 +49,8 @@ public class Claim implements Serializable {
 		super();
 	}
 
-	public Claim(Integer idClaim, ClaimType claimType, String descriptionClaim, boolean visibility) {
+	public Claim(ClaimType claimType, String descriptionClaim, boolean visibility) {
 		super();
-		this.idClaim = idClaim;
 		this.claimType = claimType;
 		this.descriptionClaim = descriptionClaim;
 		this.visibility = visibility;

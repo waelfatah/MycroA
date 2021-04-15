@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import tn.saturn.spring.services.IBalanceService;
 import tn.saturn.spring.services.ICaseService;
+import tn.saturn.spring.entities.Balance;
 import tn.saturn.spring.entities.CaseInsurance;
 
 @RestController
@@ -18,6 +21,8 @@ public class CaseRestControlImpl {
 
 	@Autowired
 	ICaseService caseService;
+	@Autowired
+	IBalanceService balanceService;
 	
 	
 	
@@ -71,12 +76,15 @@ public class CaseRestControlImpl {
 				}
 				
 				
-		// http://localhost:8081/SpringMVC/Add-Case/{idClaim}
-				@PostMapping("/Add-Case/{idClaim}")
+		// http://localhost:8081/SpringMVC/addCase/{idClaim}
+				@PostMapping("/addCase/{idClaim}")
 				@ResponseBody
 				public CaseInsurance addCase(@RequestBody CaseInsurance c,@PathVariable("idClaim") Integer idClaim) {
 					return caseService.addCase(c, idClaim);
 				}
+				
+				
+				
 				
 		// http://localhost:8081/SpringMVC/setBenefits/{idCase}
 				@PutMapping("/setBenefits/{idCase}")
@@ -105,6 +113,13 @@ public class CaseRestControlImpl {
 				@ResponseBody
 				public void refuseCase(@PathVariable("idCase") Integer idCase) {
 					caseService.refuseCase(idCase);
+				}
+				
+		// http://localhost:8081/SpringMVC/servlet/addBalance
+				@PostMapping("/addBalance")
+				@ResponseBody
+				public void addBalance(@RequestBody Balance b) {
+					balanceService.addBalance(b);
 				}
 				
 				

@@ -137,6 +137,7 @@ public class CaseServiceImpl implements ICaseService{
 			}else{
 				amount = temp*0.5;
 				c.setRemainingBenefits(temp*0.5);
+				c.setBenefitsType(2);
 				balanceService.addAmount(amount,b);
 				emailService.sendEmailAmountReceived(c.getFkContract().getFkClient().getMailClient(), b.getAmount());
 			}
@@ -190,18 +191,23 @@ public class CaseServiceImpl implements ICaseService{
 	
 	//REFUS du dossier selon l'expert
 	public void refuseCase(Integer idCase){
-		CaseInsurance c = new CaseInsurance();
-		c = caseRepository.findById(idCase).get();
-		if(c.getStatus()!=2){
-			c.setBenefits(0.0);
-			c.setRemainingBenefits(0.0);
-			c.setStatus(2);
-			c.setBenefitsType(0);
-			caseRepository.save(c);
-			emailService.sendEmailRefuseCase(c.getFkContract().getFkClient().getMailClient());
-		}else{
-			System.out.println("Case already completed");
-		}
+		
+			CaseInsurance c = new CaseInsurance();
+			c = caseRepository.findById(idCase).get();
+			if(c.getFkContract()!=null){
+				if(c.getStatus()!=2){
+					c.setBenefits(0.0);
+					c.setRemainingBenefits(0.0);
+					c.setStatus(2);
+					c.setBenefitsType(0);
+					caseRepository.save(c);
+					emailService.sendEmailRefuseCase(c.getFkContract().getFkClient().getMailClient());
+				}else{
+					System.out.println("Case already completed");
+				}
+			}else{
+				System.out.println("Affecter d'abord un contrat");
+			}
 			
 	}
 	

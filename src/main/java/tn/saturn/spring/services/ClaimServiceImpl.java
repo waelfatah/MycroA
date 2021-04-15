@@ -37,12 +37,7 @@ public class ClaimServiceImpl implements IClaimService{
 	
 	@Override
 	public Claim addClaim(Claim c){
-		Integer t = c.getIdClaim();
-		if (!claimRepository.findById(t).isPresent()){
 			return claimRepository.save(c);
-		}else{
-			return null;
-		}
 	}
 	
 	

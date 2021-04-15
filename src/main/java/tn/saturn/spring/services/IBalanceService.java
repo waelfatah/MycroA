@@ -7,4 +7,5 @@ public interface IBalanceService {
 	public void addAmount(Double amount,Balance b);
 	public void discountAmount(Double amount,Balance b);
 	
+	
 }
