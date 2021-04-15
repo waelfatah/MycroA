@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,5 +56,20 @@ public class InsuredPropertyRestController {
 	  @ResponseBody
 	  public void archive(@PathVariable("id") String id) {
 	   propertyService.archiveInsuredProperty(propertyService.retrieveInsuredProperty(id));
+	  }
+	  
+	// http://localhost:8081/MycroA/servlet/affecter/{contractId}/{propertyId}
+	  @PutMapping("/affecter/{contractId}/{propertyId}")
+	  @ResponseBody
+	  public void affecter(@PathVariable("contractId") int contractId,@PathVariable("propertyId") int propertyId) {
+	   propertyService.affecterPropertyAContract(propertyId, contractId);
+	  }
+	  
+	  // Ajouter InsuredProperty : http://localhost:8081/MycroA/servlet/add-ip
+	  @PostMapping("/add-ip")
+	  @ResponseBody
+	  public InsuredProperty addUser(@RequestBody InsuredProperty ip) {
+	  InsuredProperty user = propertyService.addInsuredProperty(ip);
+	  return user;
 	  }
 }

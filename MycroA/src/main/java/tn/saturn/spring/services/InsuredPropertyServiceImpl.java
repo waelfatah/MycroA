@@ -1,14 +1,14 @@
 package tn.saturn.spring.services;
+
 import java.util.List;
 import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import tn.saturn.spring.entities.InsuredProperty;
-import tn.saturn.spring.repositories.InsuredPropertyRepository;
+import tn.saturn.spring.entities.*;
+import tn.saturn.spring.repositories.*;
 import tn.saturn.spring.services.InsuredPropertyServiceImpl;
 
 
@@ -16,6 +16,9 @@ import tn.saturn.spring.services.InsuredPropertyServiceImpl;
 public class InsuredPropertyServiceImpl implements IPropertyService {
 	@Autowired 
 	InsuredPropertyRepository insuredpropertyRepository;
+	
+	@Autowired
+	ContractRepository contractRepository;
 	
 	public static final Logger L = LogManager.getLogger(InsuredPropertyServiceImpl.class);
 
@@ -28,7 +31,6 @@ public class InsuredPropertyServiceImpl implements IPropertyService {
 	}
 	
 	@Override
-	@RequestMapping("/InsuredPropertys")
 	public List<InsuredProperty> retrieveAllVisibleInsuredProperties() {
 		List<InsuredProperty> InsuredPropertys = (List<InsuredProperty>) insuredpropertyRepository.findAllVisibleInsuredProperties();
 
@@ -40,7 +42,6 @@ public class InsuredPropertyServiceImpl implements IPropertyService {
 	}
 	
 	@Override
-	@RequestMapping("/InsuredPropertys")
 	public List<InsuredProperty> retrieveNotVisibleInsuredProperties() {
 		List<InsuredProperty> InsuredPropertys = (List<InsuredProperty>) insuredpropertyRepository.findNotVisibleInsuredProperties();
 
@@ -52,7 +53,6 @@ public class InsuredPropertyServiceImpl implements IPropertyService {
 	}
 
 	@Override
-	@RequestMapping("/addInsuredProperty")
 	public InsuredProperty addInsuredProperty(InsuredProperty u) {
 		return insuredpropertyRepository.save(u);
 		
@@ -60,7 +60,7 @@ public class InsuredPropertyServiceImpl implements IPropertyService {
 
 	@Override
 	public void deleteInsuredProperty(String id) {
-		Optional<InsuredProperty> InsuredPropertyOp = insuredpropertyRepository.findById(Long.parseLong(id));
+		Optional<InsuredProperty> InsuredPropertyOp = insuredpropertyRepository.findById(Integer.parseInt(id));
 		if (InsuredPropertyOp.isPresent()) {
 			insuredpropertyRepository.delete(InsuredPropertyOp.get());
 			System.out.println("InsuredProperty deleted");
@@ -72,7 +72,7 @@ public class InsuredPropertyServiceImpl implements IPropertyService {
 
 	@Override
 	public InsuredProperty updateInsuredProperty(InsuredProperty u) {
-		long t = u.getIdProperty();
+		Integer t = u.getIdProperty();
 		if(insuredpropertyRepository.findById(t).isPresent()){
 			return insuredpropertyRepository.save(u);
 		}
@@ -84,7 +84,7 @@ public class InsuredPropertyServiceImpl implements IPropertyService {
 
 	@Override
 	public InsuredProperty retrieveInsuredProperty(String id){
-		Optional<InsuredProperty> InsuredPropertyOp = insuredpropertyRepository.findById(Long.parseLong(id));
+		Optional<InsuredProperty> InsuredPropertyOp = insuredpropertyRepository.findById(Integer.parseInt(id));
 		if (InsuredPropertyOp.isPresent()) {
 			InsuredPropertyOp.get();
 		} else {
@@ -109,5 +109,15 @@ public class InsuredPropertyServiceImpl implements IPropertyService {
 	public int FarmStatistics(){
 		return insuredpropertyRepository.countFermes();
 	}
+	
+	
+	@Override
+	 public void affecterPropertyAContract(int propertyId, int contractId){
+		 Contract contractManagedEntity = contractRepository.findById(contractId).get();
+		 InsuredProperty propertyManagedEntity = insuredpropertyRepository.findById(propertyId).get();
+		 
+		 contractManagedEntity.setFkInsuredProperty(propertyManagedEntity);
+		 contractRepository.save(contractManagedEntity);
+	 }
 	
 }

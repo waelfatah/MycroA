@@ -22,10 +22,10 @@ public class InsuredProperty implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="idProperty")
-	private long idProperty; // Clé primaire
+	private Integer idProperty; // Clé primaire
 	
 	@Column(name="propertyValue")
-	private Float propertyValue;
+	private Double propertyValue;
 	
 	@Column(name="propertyType")
 	@Enumerated(EnumType.STRING)
@@ -41,26 +41,26 @@ public class InsuredProperty implements Serializable {
 		
 	}
 
-	public InsuredProperty(Float propertyValue, PropertyType propertyType, boolean visibility) {
+	public InsuredProperty(Double propertyValue, PropertyType propertyType, boolean visibility) {
 		super();
 		this.propertyValue = propertyValue;
 		this.propertyType = propertyType;
 		this.visibility = visibility;
 	}
 
-	public long getIdProperty() {
+	public Integer getIdProperty() {
 		return idProperty;
 	}
 
-	public void setIdProperty(long idProperty) {
+	public void setIdProperty(Integer idProperty) {
 		this.idProperty = idProperty;
 	}
 
-	public Float getPropertyValue() {
+	public Double getPropertyValue() {
 		return propertyValue;
 	}
 
-	public void setPropertyValue(Float propertyValue) {
+	public void setPropertyValue(Double propertyValue) {
 		this.propertyValue = propertyValue;
 	}
 

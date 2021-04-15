@@ -127,6 +127,18 @@ public class Contract implements Serializable{
 	}
 
 	public Contract() {
+		
+	}
+
+	public Contract(Date startDateContract, Date dueDateContract, String clauses, float premium, int contractRank,
+			boolean visibility) {
+		super();
+		this.startDateContract = startDateContract;
+		this.dueDateContract = dueDateContract;
+		this.clauses = clauses;
+		this.premium = premium;
+		this.contractRank = contractRank;
+		this.visibility = visibility;
 	}
 
 	

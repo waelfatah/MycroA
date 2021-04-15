@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import tn.saturn.spring.entities.*;
 
-public interface InsuredPropertyRepository extends CrudRepository<InsuredProperty,Long >{
+public interface InsuredPropertyRepository extends CrudRepository<InsuredProperty,Integer >{
 	
 	//Statistics
 	@Query(value="Select COUNT(*) from insuredproperty ip WHERE ip.property_type= 'VEHICULE'",nativeQuery=true)
@@ -29,7 +29,7 @@ public interface InsuredPropertyRepository extends CrudRepository<InsuredPropert
 	@Transactional
 	@Modifying
 	@Query(value="Update insuredproperty set visibility=0 where id_property=?1",nativeQuery=true)
-	public void archiveInsuredProperty(long id);
+	public void archiveInsuredProperty(Integer id);
 	
 	
 	

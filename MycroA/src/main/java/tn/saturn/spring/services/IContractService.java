@@ -9,8 +9,9 @@ public interface IContractService {
 	public ContractRepository getContract();
 	public void setContract(ContractRepository Contract);
 	public List<Contract> retrieveAllContracts();
-	public Contract addContract(Contract ip);
+	public Contract addContract(Contract contract, int propertyId, String clientId);
 	public void deleteContract(String id);
 	public Contract updateContract(Contract ip);
 	public Contract retrieveContract(String id);
+	public void affecterPropertyAContract(int propertyId, int contractId);
 }

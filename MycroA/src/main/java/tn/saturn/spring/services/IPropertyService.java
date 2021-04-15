@@ -18,5 +18,6 @@ public interface IPropertyService {
 	public int VehiclesStatistics();
 	public int FarmStatistics();
 	public void archiveInsuredProperty(InsuredProperty ip);
+	public void affecterPropertyAContract(int propertyId, int contractId);
 	
 }
