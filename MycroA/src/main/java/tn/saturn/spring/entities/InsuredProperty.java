@@ -9,11 +9,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
-@Entity 
+@Entity(name ="INSUREDPROPERTY")
 @Table(name ="INSUREDPROPERTY")
 public class InsuredProperty implements Serializable {
 	
@@ -22,10 +21,10 @@ public class InsuredProperty implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="idProperty")
-	private long idProperty; // Clé primaire
+	private Integer idProperty; // Clé primaire
 	
 	@Column(name="propertyValue")
-	private Float propertyValue;
+	private Double propertyValue;
 	
 	@Column(name="propertyType")
 	@Enumerated(EnumType.STRING)
@@ -34,33 +33,31 @@ public class InsuredProperty implements Serializable {
 	@Column(name="visibility")
 	private boolean visibility;
 	
-	@OneToOne(mappedBy="fkInsuredProperty")
-	private Contract fkContract;
 
 	public InsuredProperty() {
 		
 	}
 
-	public InsuredProperty(Float propertyValue, PropertyType propertyType, boolean visibility) {
+	public InsuredProperty(Double propertyValue, PropertyType propertyType, boolean visibility) {
 		super();
 		this.propertyValue = propertyValue;
 		this.propertyType = propertyType;
 		this.visibility = visibility;
 	}
 
-	public long getIdProperty() {
+	public Integer getIdProperty() {
 		return idProperty;
 	}
 
-	public void setIdProperty(long idProperty) {
+	public void setIdProperty(Integer idProperty) {
 		this.idProperty = idProperty;
 	}
 
-	public Float getPropertyValue() {
+	public Double getPropertyValue() {
 		return propertyValue;
 	}
 
-	public void setPropertyValue(Float propertyValue) {
+	public void setPropertyValue(Double propertyValue) {
 		this.propertyValue = propertyValue;
 	}
 
@@ -80,13 +77,6 @@ public class InsuredProperty implements Serializable {
 		this.visibility = visibility;
 	}
 
-	public Contract getFkContract() {
-		return fkContract;
-	}
-
-	public void setFkContract(Contract fkContract) {
-		this.fkContract = fkContract;
-	}
 
 	@Override
 	public String toString() {

@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
-@Entity 
+@Entity(name ="CONTRACT") 
 @Table(name ="CONTRACT")
 public class Contract implements Serializable{
 
@@ -39,7 +39,7 @@ public class Contract implements Serializable{
 	private String clauses;
 	
 	@Column(name="premium")
-	private float premium;
+	private Double premium;
 	
 	@Column(name="contractRank")
 	private int contractRank;
@@ -86,11 +86,11 @@ public class Contract implements Serializable{
 		this.clauses = clauses;
 	}
 
-	public float getPremium() {
+	public Double getPremium() {
 		return premium;
 	}
 
-	public void setPremium(float premium) {
+	public void setPremium(Double premium) {
 		this.premium = premium;
 	}
 
@@ -127,6 +127,18 @@ public class Contract implements Serializable{
 	}
 
 	public Contract() {
+		
+	}
+
+	public Contract(Date startDateContract, Date dueDateContract, String clauses, Double premium, int contractRank,
+			boolean visibility) {
+		super();
+		this.startDateContract = startDateContract;
+		this.dueDateContract = dueDateContract;
+		this.clauses = clauses;
+		this.premium = premium;
+		this.contractRank = contractRank;
+		this.visibility = visibility;
 	}
 
 	

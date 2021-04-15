@@ -3,6 +3,7 @@ package tn.saturn.spring.services;
 import java.util.List;
 
 import tn.saturn.spring.entities.InsuredProperty;
+import tn.saturn.spring.entities.PropertyType;
 import tn.saturn.spring.repositories.InsuredPropertyRepository;
 
 public interface IPropertyService {
@@ -15,8 +16,8 @@ public interface IPropertyService {
 	public void deleteInsuredProperty(String id);
 	public InsuredProperty updateInsuredProperty(InsuredProperty ip);
 	public InsuredProperty retrieveInsuredProperty(String id);
-	public int VehiclesStatistics();
-	public int FarmStatistics();
 	public void archiveInsuredProperty(InsuredProperty ip);
+	public void affecterPropertyAContract(int propertyId, int contractId);
+	public Double tauxInsuredProperty(PropertyType type);
 	
 }
