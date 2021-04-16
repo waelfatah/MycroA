@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity 
@@ -31,7 +33,7 @@ public class Complaint implements Serializable  {
 	
 	@Column(name="visibility")
 	private boolean visibility;
-	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Client fkClient;
 

@@ -29,20 +29,8 @@ public class InsuredPropertyServiceImpl implements IPropertyService {
 	
 	@Override
 	@RequestMapping("/InsuredPropertys")
-	public List<InsuredProperty> retrieveAllVisibleInsuredProperties() {
-		List<InsuredProperty> InsuredPropertys = (List<InsuredProperty>) insuredpropertyRepository.findAllVisibleInsuredProperties();
-
-		for (InsuredProperty InsuredProperty : InsuredPropertys) {
-			L.info("InsuredProperty +++" + InsuredProperty);
-			;
-		}
-		return InsuredPropertys;
-	}
-	
-	@Override
-	@RequestMapping("/InsuredPropertys")
-	public List<InsuredProperty> retrieveNotVisibleInsuredProperties() {
-		List<InsuredProperty> InsuredPropertys = (List<InsuredProperty>) insuredpropertyRepository.findNotVisibleInsuredProperties();
+	public List<InsuredProperty> retrieveAllInsuredProperties() {
+		List<InsuredProperty> InsuredPropertys = (List<InsuredProperty>) insuredpropertyRepository.findAll();
 
 		for (InsuredProperty InsuredProperty : InsuredPropertys) {
 			L.info("InsuredProperty +++" + InsuredProperty);
@@ -92,22 +80,6 @@ public class InsuredPropertyServiceImpl implements IPropertyService {
 		}
 		L.info("InsuredProperty +++" + InsuredPropertyOp.get());
 		return InsuredPropertyOp.get();
-	}
-	
-	@Override
-	public void archiveInsuredProperty (InsuredProperty ip){
-		insuredpropertyRepository.archiveInsuredProperty(ip.getIdProperty());
-		insuredpropertyRepository.save(ip);
-	}
-	
-	@Override
-	public int VehiclesStatistics(){
-		return insuredpropertyRepository.countVehicules();
-	}
-	
-	@Override
-	public int FarmStatistics(){
-		return insuredpropertyRepository.countFermes();
 	}
 	
 }

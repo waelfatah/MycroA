@@ -34,7 +34,7 @@ public class InsuredProperty implements Serializable {
 	@Column(name="visibility")
 	private boolean visibility;
 	
-	@OneToOne(mappedBy="fkInsuredProperty")
+	@OneToOne
 	private Contract fkContract;
 
 	public InsuredProperty() {

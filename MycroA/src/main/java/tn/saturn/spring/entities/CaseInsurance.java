@@ -20,28 +20,56 @@ public class CaseInsurance implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="idCase")
-	private int idCase; // Clé primaire
+	private long idCase; // Clé primaire
 	
 	@Column(name="status")
 	private int status;
 	
-	@Column(name="visibility")
-	private boolean visibility;
+	@Column(name="benefits")
+	private double benefits;
+	
+	@Column(name="benefitsType")
+	private int benefitsType;
+
 	
 	@OneToOne(mappedBy="fkCase")
 	private Contract fkContract;
 	
-	@OneToOne
+	@OneToOne(mappedBy="fkCase")
 	private Claim fkClaim;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Employee> listEmployee;
 
-	public int getIdCase() {
+	
+	
+	
+	
+	
+	
+	
+	
+	public double getBenefits() {
+		return benefits;
+	}
+
+	public void setBenefits(double benefits) {
+		this.benefits = benefits;
+	}
+
+	public int getBenefitsType() {
+		return benefitsType;
+	}
+
+	public void setBenefitsType(int benefitsType) {
+		this.benefitsType = benefitsType;
+	}
+	
+	public long getIdCase() {
 		return idCase;
 	}
 
-	public void setIdCase(int idCase) {
+	public void setIdCase(long idCase) {
 		this.idCase = idCase;
 	}
 
@@ -53,13 +81,6 @@ public class CaseInsurance implements Serializable {
 		this.status = status;
 	}
 
-	public boolean isVisibility() {
-		return visibility;
-	}
-
-	public void setVisibility(boolean visibility) {
-		this.visibility = visibility;
-	}
 
 	public Contract getFkContract() {
 		return fkContract;
@@ -84,5 +105,6 @@ public class CaseInsurance implements Serializable {
 	public void setListEmployee(List<Employee> listEmployee) {
 		this.listEmployee = listEmployee;
 	}
+	
 	
 }

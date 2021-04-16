@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity 
 @Table(name ="CONTRACT")
@@ -47,12 +49,19 @@ public class Contract implements Serializable{
 	@Column(name="visibility")
 	private boolean visibility;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Client fkClient;
-	
-	@OneToOne
+	@JsonIgnore
+	@ManyToOne
+	private Client Client;
+	@JsonIgnore
+	@OneToOne(mappedBy="fkContract")
 	private InsuredProperty fkInsuredProperty;
-	
+	@JsonIgnore
+	@OneToOne
+	private CaseInsurance fkCase;
+
+	private long idInsuredProperty;
+
+	private int idClient;
 
 	public int getIdContract() {
 		return idContract;
@@ -111,11 +120,11 @@ public class Contract implements Serializable{
 	}
 
 	public Client getFkClient() {
-		return fkClient;
+		return Client;
 	}
 
 	public void setFkClient(Client fkClient) {
-		this.fkClient = fkClient;
+		this.Client = fkClient;
 	}
 
 	public InsuredProperty getFkInsuredProperty() {
@@ -126,9 +135,44 @@ public class Contract implements Serializable{
 		this.fkInsuredProperty = fkInsuredProperty;
 	}
 
+	public CaseInsurance getFkCase() {
+		return fkCase;
+	}
+
+	public void setFkCase(CaseInsurance fkCase) {
+		this.fkCase = fkCase;
+	}
+
 	public Contract() {
 	}
 
+	public Contract(Date startDateContract, Date dueDateContract, String clauses, float premium, int contractRank,
+			boolean visibility, int idClient, long idInsuredProperty) {
+		this.startDateContract = startDateContract;
+		this.dueDateContract = dueDateContract;
+		this.clauses = clauses;
+		this.premium = premium;
+		this.contractRank = contractRank;
+		this.visibility = visibility;
+		this.idClient = idClient;
+		this.idInsuredProperty = idInsuredProperty;
+	}
+
+	public int getIdClient() {
+		return idClient;
+	}
+
+	public void setIdClient(int idClient) {
+		this.idClient = idClient;
+	}
+
+	public long getIdInsuredProperty() {
+		return idInsuredProperty;
+	}
+
+	public void setIdInsuredProperty(long idInsuredProperty) {
+		this.idInsuredProperty = idInsuredProperty;
+	}
 	
 	
 }
