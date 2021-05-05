@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Connexion" />
+	<ui:define name="contentConnected">
+		<div class="container">
+		<div class="row">
+			<div class="col-md-10 offset-md-1 col-lg-3 offset-lg-0">
+				<div class="sidebar">
+					<!-- User Widget -->
+					<div class="widget user">
+						<!-- User Image -->
+						<div class="image d-flex justify-content-center">
+							<img src="#{resource['images/user/user-thumb.jpg']}" alt="" class=""/>
+						</div>
+						<!-- User Name -->
+						<h:outputText value="Welcome #{userController.c.usernameClient}" />
+					</div>
+					<!-- Dashboard Links -->
+					<div class="widget user-dashboard-menu">
+						<ul>
+							<li class="active"><a>
+							<i class="fa fa-user"></i>My profile</a></li>
+							<li>
+								<a href="dashboard-archived-ads.html"><i class="fa fa-file-archive-o"></i>My cases<span>#{userController.c.usernameClient}</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
+				<!-- Edit Profile Welcome Text -->
+				<div class="widget welcome-message">
+					<h2>My actual balance : </h2>
+					<h:outputText value="#{userController.c.fkBalance.amount}"/><a>$</a>
+				</div>
+				<!-- Edit Personal Info -->
+				<div class="row">
+					<div class="col-lg-6 col-md-6">
+						<div class="widget personal-info">
+							<h3 class="widget-header user">Personal Information</h3>
+							<form action="#">
+								<!-- First Name -->
+								<div class="form-group">
+									<label for="first-name">First Name</label>
+									<h:inputText value="#{userController.c.fNameClient}" class="form-control" readonly="true"/>
+								</div>
+								<!-- Last Name -->
+								<div class="form-group">
+									<label for="last-name">Last Name</label>
+									<h:inputText value="#{userController.c.lNameClient}" class="form-control" readonly="true"/>
+								</div>
+								<!-- Phone -->
+								<div class="form-group">
+									<label for="comunity-name">Phone</label>
+									<h:inputText value="#{userController.c.phoneClient}" class="form-control" readonly="true"/>
+								</div>
+								
+								<div class="form-group">
+									<label for="comunity-name">CIN</label>
+									<h:inputText value="#{userController.c.CIN}" class="form-control" readonly="true"/>
+								</div>
+								
+								<div class="form-group">
+									<label for="comunity-name">Email</label>
+									<h:inputText value="#{userController.c.mailClient}" class="form-control" readonly="true"/>
+								</div>
+								
+								<div class="form-group">
+									<label for="comunity-name">Age</label>
+									<h:inputText value="#{userController.c.age}" class="form-control" readonly="true"/>
+								</div>
+								
+								<div class="form-group">
+									<label for="comunity-name">Profession</label>
+									<h:inputText value="#{userController.c.profession}" class="form-control" readonly="true"/>
+								</div>
+								
+								<div class="form-group">
+									<label for="comunity-name">Salary</label>
+									<h:inputText value="#{userController.c.salary}" class="form-control" readonly="true"/>
+								</div>
+								
+								<div class="form-group">
+									<label for="comunity-name">RIB</label>
+									<h:inputText value="#{userController.c.RIB}" class="form-control" readonly="true"/>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6">
+						<!-- Change Password -->
+					<div class="widget change-password">
+						<h3 class="widget-header user">Edit Password</h3>
+						<h:form id="form">
+							<!-- Current Password -->
+							<div class="form-group">
+								<label for="current-password">Current Password</label>
+								<h:inputSecret value="#{userController.oldPassword}" class="form-control" required="true" id="currentPassword" label="Current Password"/>
+								<h:message for="currentPassword" errorClass="erreur" style = "color:red"/>
+							</div>
+							<!-- New Password -->
+							<div class="form-group">
+								<label for="new-password">New Password</label>
+								<h:inputSecret value="#{userController.newPassword}" class="form-control" required="true" id="newPassword" label="New Password"/>
+								<h:message for="newPassword" errorClass="erreur" style = "color:red"/>
+							</div>
+							<!-- Confirm New Password -->
+							<div class="form-group">
+								<label for="confirm-password">Confirm New Password</label>
+								<h:inputSecret value="#{userController.confirmPassword}" class="form-control" required="true" id="confirmPassword" label="Confirm New Password"/>
+								<h:message for="confirmPassword" errorClass="erreur" style = "color:red"/>
+							</div>
+							<!-- Submit Button -->
+							<h:commandButton id="btn" value="Change Password" action="#{userController.changePassword()}" styleClass="btn btn-transparent"/>
+							<h:message for="btn"/>
+						</h:form>
+					</div>
+					</div>
+					<div class="col-lg-6 col-md-6">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</ui:define>
+</ui:composition>

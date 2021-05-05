@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: MycroAFrontBack
+Implementation-Version: 1.0.0
+Built-By: Kais
+Implementation-Vendor-Id: tn.saturn.spring
+Build-Jdk: 1.8.0_281
+Implementation-URL: https://spring.io/projects/spring-boot/MycroAFront
+ Back
+Created-By: Maven Integration for Eclipse
+
