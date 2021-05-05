@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Connexion" />
+	<ui:define name="content">
+		<style>
+.bg-1 {
+	background: url("#{resource['images/home/hero.jpg']}");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.bg-2 {
+	background:
+		url("#{resource['images/subscription/subscription-back.jpg']}");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.bg-3 {
+	background:
+		url("#{resource['images/call-to-action/cta-background.jpg']}");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+</style>
+		<div class="hero-area bg-1 text-center overly">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Header Contetnt -->
+						<div class="content-block">
+							<h1>In You We Trust</h1>
+							<p>Join the microinsurance world</p>
+							<div class="short-popular-category-list text-center">
+								<h2>Popular Contract type</h2>
+								<ul class="list-inline">
+									<li class="list-inline-item"><a><i class="fa fa-bed"></i>
+											Home</a></li>
+									<li class="list-inline-item"><a><i
+											class="fa fa-building"></i> Work</a></li>
+									<li class="list-inline-item"><a><i class="fa fa-car"></i>
+											Cars</a></li>
+									<li class="list-inline-item"><a><i
+											class="fa fa-cutlery"></i> Restaurants</a></li>
+									<li class="list-inline-item"><a><i
+											class="fa fa-coffee"></i> Cafe</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<section class="popular-deals section bg-gray">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2>Trending Adds</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Quas, magnam.</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!-- offer 01 -->
+				<div class="col-lg-12">
+					<div class="trending-ads-slide">
+						<div class="col-sm-12 col-lg-4">
+							<!-- product card -->
+							<div class="product-item bg-light">
+								<div class="card">
+									<div class="thumb-content">
+										<!-- <div class="price">$200</div> -->
+										<a href="single.html"> <img class="card-img-top img-fluid"
+											src="#{resource['images/products/products-1.jpg']}" alt="Card image cap"/></a>
+									</div>
+									<div class="card-body">
+										<h4 class="card-title">
+											<a href="single.html">11inch Macbook Air</a>
+										</h4>
+										<ul class="list-inline product-meta">
+											<li class="list-inline-item"><a href="single.html"><i
+													class="fa fa-folder-open-o"></i>Electronics</a></li>
+											<li class="list-inline-item"><a href="#"><i
+													class="fa fa-calendar"></i>26th December</a></li>
+										</ul>
+										<p class="card-text">Lorem ipsum dolor sit amet,
+											consectetur adipisicing elit. Explicabo, aliquam!</p>
+										<div class="product-ratings">
+											<ul class="list-inline">
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+						</div>
+						<div class="col-sm-12 col-lg-4">
+							<!-- product card -->
+							<div class="product-item bg-light">
+								<div class="card">
+									<div class="thumb-content">
+										<!-- <div class="price">$200</div> -->
+										<a href="single.html"> <img class="card-img-top img-fluid"
+											src="#{resource['images/products/products-2.jpg']}" alt="Card image cap"/></a>
+									</div>
+									<div class="card-body">
+										<h4 class="card-title">
+											<a href="single.html">Full Study Table Combo</a>
+										</h4>
+										<ul class="list-inline product-meta">
+											<li class="list-inline-item"><a href="single.html"><i
+													class="fa fa-folder-open-o"></i>Furnitures</a></li>
+											<li class="list-inline-item"><a href="#"><i
+													class="fa fa-calendar"></i>26th December</a></li>
+										</ul>
+										<p class="card-text">Lorem ipsum dolor sit amet,
+											consectetur adipisicing elit. Explicabo, aliquam!</p>
+										<div class="product-ratings">
+											<ul class="list-inline">
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+						</div>
+						<div class="col-sm-12 col-lg-4">
+							<!-- product card -->
+							<div class="product-item bg-light">
+								<div class="card">
+									<div class="thumb-content">
+										<!-- <div class="price">$200</div> -->
+										<a href="single.html"> <img class="card-img-top img-fluid"
+											src="#{resource['images/products/products-3.jpg']}" alt="Card image cap"/></a>
+									</div>
+									<div class="card-body">
+										<h4 class="card-title">
+											<a href="single.html">11inch Macbook Air</a>
+										</h4>
+										<ul class="list-inline product-meta">
+											<li class="list-inline-item"><a href="single.html"><i
+													class="fa fa-folder-open-o"></i>Electronics</a></li>
+											<li class="list-inline-item"><a href="#"><i
+													class="fa fa-calendar"></i>26th December</a></li>
+										</ul>
+										<p class="card-text">Lorem ipsum dolor sit amet,
+											consectetur adipisicing elit. Explicabo, aliquam!</p>
+										<div class="product-ratings">
+											<ul class="list-inline">
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+						</div>
+						<div class="col-sm-12 col-lg-4">
+							<!-- product card -->
+							<div class="product-item bg-light">
+								<div class="card">
+									<div class="thumb-content">
+										<!-- <div class="price">$200</div> -->
+										<a href="single.html"> <img class="card-img-top img-fluid"
+											src="#{resource['images/products/products-1.jpg']}" alt="Card image cap"/></a>
+									</div>
+									<div class="card-body">
+										<h4 class="card-title">
+											<a href="single.html">Full Study Table Combo</a>
+										</h4>
+										<ul class="list-inline product-meta">
+											<li class="list-inline-item"><a href="single.html"><i
+													class="fa fa-folder-open-o"></i>Furnitures</a></li>
+											<li class="list-inline-item"><a href="#"><i
+													class="fa fa-calendar"></i>26th December</a></li>
+										</ul>
+										<p class="card-text">Lorem ipsum dolor sit amet,
+											consectetur adipisicing elit. Explicabo, aliquam!</p>
+										<div class="product-ratings">
+											<ul class="list-inline">
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i
+													class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		</section>
+
+
+
+
+
+
+		<div class="call-to-action overly bg-3 section-sm">
+			<!-- Container Start -->
+			<div class="container">
+				<div class="row justify-content-md-center text-center">
+					<div class="col-md-8">
+						<div class="content-holder">
+							<h2>Join us MycroA</h2>
+							<ul class="list-inline mt-30">
+								<li class="list-inline-item"><a class="btn btn-main"
+									href="ad-listing.html">Ask for a quote</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Container End -->
+		</div>
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<!-- FAVICON -->
+		<h:outputScript name="images/favicon.png" rel="shortcut icon" />
+		<!-- PLUGINS CSS STYLE -->
+		<h:outputStylesheet name="plugins/jquery-ui/jquery-ui.min.css" />
+		<!-- Bootstrap -->
+		<h:outputStylesheet name="plugins/bootstrap/css/bootstrap.min.css" />
+		<h:outputStylesheet name="plugins/bootstrap/css/bootstrap-slider.css" />
+		<!-- Font Awesome -->
+		<h:outputStylesheet
+			name="plugins/font-awesome/css/font-awesome.min.css" />
+		<h:outputStylesheet library="webjars"
+			name="font-awesome/5.8.2/css/all.min-jsf.css" />
+		<h:outputStylesheet library="webjars"
+			name="font-awesome/5.8.2/css/v4-shims.min-jsf.css" />
+		<!-- Owl Carousel -->
+		<h:outputStylesheet name="plugins/slick-carousel/slick/slick.css" />
+		<h:outputStylesheet
+			name="plugins/slick-carousel/slick/slick-theme.css" />
+		<!-- Fancy Box -->
+		<h:outputStylesheet name="plugins/fancybox/jquery.fancybox.pack.css" />
+		<h:outputStylesheet
+			name="plugins/jquery-nice-select/css/nice-select.css" />
+		<!-- CUSTOM CSS -->
+		<h:outputStylesheet name="css/style.css" />
+		<h:outputStylesheet name="css/all.css" />
+		<h:outputStylesheet name="fonts/font-awesome.min.css" />
+		<h:outputStylesheet name="fonts/lineo-icon/style.css" />
+
+		<h:outputStylesheet
+			name="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+			integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+			crossorigin="anonymous" />
+		<title>#{page_name}</title>
+
+
+	</h:head>
+
+	<!--  Header -->
+	<h:body class="body-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="navbar navbar-expand-lg navbar-light navigation">
+
+
+						<h:graphicImage url="#{resource['images/logo.png']}" width="150"
+							height="150" />
+						<button class="navbar-toggler" type="button"
+							data-toggle="collapse" data-target="#navbarSupportedContent"
+							aria-controls="navbarSupportedContent" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav ml-auto main-nav ">
+								<h:link outcome="/pages/index" value="Home" class="nav-link"/>
+								<li class="nav-item dropdown dropdown-slide"><a
+									class="nav-link dropdown-toggle" data-toggle="dropdown" href="">Dashboard<span><i
+											class="fa fa-angle-down"></i></span>
+								</a> <!-- Dropdown list -->
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="dashboard.html">Dashboard</a> <a
+											class="dropdown-item" href="dashboard-my-ads.html">Dashboard
+											My Ads</a> <a class="dropdown-item"
+											href="dashboard-favourite-ads.html">Dashboard Favourite
+											Ads</a> <a class="dropdown-item"
+											href="dashboard-archived-ads.html">Dashboard Archived Ads</a>
+										<a class="dropdown-item" href="dashboard-pending-ads.html">Dashboard
+											Pending Ads</a>
+									</div></li>
+								<li class="nav-item dropdown dropdown-slide"><a
+									class="nav-link dropdown-toggle" href="#"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"> Pages <span><i
+											class="fa fa-angle-down"></i></span>
+								</a> <!-- Dropdown list -->
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="about-us.html">About Us</a> <a
+											class="dropdown-item" href="contact-us.html">Contact Us</a> <a
+											class="dropdown-item" href="user-profile.html">User
+											Profile</a> <a class="dropdown-item" href="404.html">404 Page</a>
+										<a class="dropdown-item" href="package.html">Package</a> <a
+											class="dropdown-item" href="single.html">Single Page</a> <a
+											class="dropdown-item" href="store.html">Store Single</a> <a
+											class="dropdown-item" href="single-blog.html">Single Post</a>
+										<a class="dropdown-item" href="blog.html">Blog</a>
+
+									</div></li>
+								<li class="nav-item dropdown dropdown-slide">
+								<h:link outcome="/pages/profile" value="My Profile" class="nav-link"/>
+								</li>
+							</ul>
+							<h:form>
+							<ul class="navbar-nav ml-auto mt-10">
+								<c:if test="#{userController.loggedIn}">
+									<li class="nav-item">
+									<h:commandLink action="#{userController.doLogout()}" value="Logout" styleClass="nav-link login-button"/>
+									</li>
+									<li class="nav-item">
+									<h:link outcome="/pages/addClaim" value="Add Claims" class="nav-link text-white add-button"><i
+											class="fa fa-plus-circle"></i></h:link></li>
+								</c:if>
+								<c:if test="#{userController.loggedIn == false}">
+									<li class="nav-item">
+									
+									<h:link outcome="/login" value="Login" styleClass="nav-link login-button"/>
+									
+									</li>
+								</c:if>
+							</ul>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--  Content -->
+		<c:if test="#{userController.loggedIn}">
+		<ui:insert name="contentConnected" />
+		</c:if>
+		<ui:insert name="content" />
+
+		<!--  Footer -->
+		<footer class="footer section section-sm"> <!-- Container Start -->
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-7 offset-md-1 offset-lg-0">
+					<!-- About -->
+					<div class="block about">
+						<!-- footer logo -->
+						<img src="#{resource['images/logo.png']}" width="200" height="200"
+							alt="" />
+					</div>
+				</div>
+				<!-- Link list -->
+				<div class="col-lg-2 offset-lg-1 col-md-3">
+					<div class="block">
+						<h4>Site Pages</h4>
+						<ul>
+							<li><a href="#">Boston</a></li>
+							<li><a href="#">How It works</a></li>
+							<li><a href="#">Deals &amp; Coupons</a></li>
+							<li><a href="#">Articls &amp; Tips</a></li>
+							<li><a href="terms-condition.html">Terms &amp;
+									Conditions</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- Link list -->
+				<div class="col-lg-2 col-md-3 offset-md-1 offset-lg-0">
+					<div class="block">
+						<h4>Admin Pages</h4>
+						<ul>
+							<li><a href="category.html">Category</a></li>
+							<li><a href="single.html">Single Page</a></li>
+							<li><a href="store.html">Store Single</a></li>
+							<li><a href="single-blog.html">Single Post</a></li>
+							<li><a href="blog.html">Blog</a></li>
+
+
+
+						</ul>
+					</div>
+				</div>
+				<!-- Promotion -->
+				<div class="col-lg-4 col-md-7">
+					<!-- App promotion -->
+					<div class="block-2 app-promotion">
+						<div class="mobile d-flex">
+							<a href=""> <!-- Icon --> <img
+								src="#{resource['images/footer/phone-icon.png']}"
+								alt="mobile-icon"></img></a>
+							<p>Get the Dealsy Mobile App and Save more</p>
+						</div>
+						<div class="download-btn d-flex my-3">
+							<a href="#"><img
+								src="#{resource['images/apps/google-play-store.png']}"
+								class="img-fluid" alt=""></img></a> <a href="#" class=" ml-3"><img
+								src="#{resource['images/apple-app-store.png)']}"
+								class="img-fluid" alt=""></img></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Container End --> </footer>
+		<!-- Footer Bottom -->
+		<div class="footer-bottom">
+			<!-- Container Start -->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-12">
+						<!-- Copyright -->
+						<div class="copyright">
+							<p>
+								Copyright ©
+								<script>
+									var CurrentYear = new Date().getFullYear()
+									document.write(CurrentYear)
+								</script>
+								. All Rights Reserved, theme by <img
+									src="#{resource['images/saturn.png']}" width="110" height="37"
+									alt="" />
+
+							</p>
+						</div>
+					</div>
+					<div class="col-sm-6 col-12">
+						<!-- Social Icons -->
+						<ul class="social-media-icons text-right">
+							<li><a class="fa fa-facebook"
+								href="https://www.facebook.com/MycroA-107445394827138" target="_blank"></a></li>
+							<li><a class="fa fa-instagram"
+								href="https://www.instagram.com/mycroa/?hl=fr" target="_blank"></a></li>
+							<li><a class="fa fa-linkedin"
+								href="https://www.linkedin.com/in/mycroa-inc-167056211/" target="_blank"></a></li>
+							<li><a class="fa fa-twitter"
+								href="https://twitter.com/mycroainsurance" target="_blank"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- Container End -->
+			<!-- To Top -->
+			<div class="top-to">
+				<a id="top" class="" href="#"><i class="fa fa-angle-up"></i></a>
+			</div>
+		</div>
+		
+		
+		
+		
+		<div class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2021</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+		<div id="gotoTop" class="icon-angle-up"></div>
+		<h:outputScript name="plugins/jQuery/jquery.min.js" />
+		<h:outputScript name="plugins/bootstrap/js/popper.min.js" />
+		<h:outputScript name="plugins/bootstrap/js/bootstrap.min.js" />
+		<h:outputScript name="plugins/bootstrap/js/bootstrap-slider.js" />
+		<h:outputScript name="plugins/tether/js/tether.min.js" />
+		<h:outputScript name="plugins/raty/jquery.raty-fa.js" />
+		<h:outputScript name="plugins/slick-carousel/slick/slick.min.js" />
+		<h:outputScript
+			name="plugins/jquery-nice-select/js/jquery.nice-select.min.js" />
+		<h:outputScript name="plugins/fancybox/jquery.fancybox.pack.js" />
+		<h:outputScript name="plugins/smoothscroll/SmoothScroll.min.js" />
+		<h:outputScript name="plugins/google-map/gmap.js" />
+		<h:outputScript name="js/script.js" />
+	</h:body>
+</f:view>
+</html>
