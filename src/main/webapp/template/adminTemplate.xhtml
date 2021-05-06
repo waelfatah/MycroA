@@ -32,13 +32,9 @@
 		<title>Dashboard</title>
 	</h:head>
 	<h:body class="sb-nav-fixed">
-		<div class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-			<a class="navbar-brand">Welcome
-				#{userController.e.usernameEmployee}</a>
-			<h:button class="btn btn-link btn-sm order-1 order-lg-0"
-				id="sidebarToggle" outcome="#!">
-				<i class="fa fa-bars"></i>
-			</h:button>
+		<div class="sb-topnav navbar navbar-expand navbar-light bg-light">
+		<h:graphicImage url="#{resource['images/logo.png']}" width="150"
+							height="160" />
 			<!-- Navbar Search-->
 			<form
 				class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -54,10 +50,17 @@
 						</li>
 					</h:form>
 			</ul>
+			<ul class="navbar-nav ml-auto ml-md-0">
+					<h:form>
+						<li class="nav-item">
+						<h:commandLink action="#{userController.doLogout()}" value="" styleClass="nav-link"><i class="fas fa-sign-out-alt"></i></h:commandLink>
+						</li>
+					</h:form>
+			</ul>
 		</div>
 		<div id="layoutSidenav">
 			<div id="layoutSidenav_nav">
-				<div class="sb-sidenav accordion sb-sidenav-dark"
+				<div class="sb-sidenav accordion sb-sidenav-light"
 					id="sidenavAccordion">
 					<div class="sb-sidenav-menu">
 						<div class="nav">
@@ -67,10 +70,18 @@
 								<h:form>
 									<div class="sb-sidenav-menu-heading">EXPERT</div>
 										<li class="nav-item">
-										<h:link action="#{claimController.getAllClaims()}}" outcome="/pages/admin/viewAllClaims" value=" View All Claims" class="nav-link"></h:link>
+										<h:link outcome="/pages/admin/viewAllNonAffectedCases" class="nav-link"><i class="far fa-file-archive"></i>&#160; Unaffected Cases</h:link>
+										</li>
+										<li class="nav-item">
+										<h:link outcome="/pages/admin/viewWorkingcases" class="nav-link"><i class="fas fa-file-archive"></i>&#160; Uncompleted Cases</h:link>
+										</li>
+										
+										<li class="nav-item">
+										<h:link outcome="/pages/admin/affectRemainingBenefits" class="nav-link"><i class="fas fa-money-check-alt"></i>&#160; Remaining Benefits</h:link>
 										</li>
 								</h:form>
 							</c:if>
+							
 							
 						</div>
 					</div>
