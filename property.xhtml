@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:composition template="../../layout.xhtml">
+	<ui:define name="propertyAdd">
+		<!-- BEGIN : TP1 JSF Introduction Login -->
+		<h:panelGroup columns="2">
+			<h:form id="propertyForm">
+|
+
+				<table>
+					<tr>
+						<td><h:outputText for="propertyValue" value="Property Value "></h:outputText></td>
+						<td><h:inputText id="propertyValue"
+								value="#{InsuredPropertyController.ip.propertyValue}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText for="visibility" value="Visibility"></h:outputText></td>
+						<td><h:selectBooleanCheckbox id="visibility"
+								value="#{InsuredPropertyController.ip.visibility}"></h:selectBooleanCheckbox></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Property Type"></h:outputText></td>
+						<td><h:selectOneMenu
+								value="#{InsuredPropertyController.ip.propertyType}">
+								<f:selectItem itemLabel="Choisir le Type" itemValue="#{null}" />
+								<f:selectItems
+									value="#{InsuredPropertyController.propertyTypes}" />
+							</h:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td colspan="2"><h:commandButton value="Add Property"
+								action="#{InsuredPropertyController.addProperty()}" /></td>
+					</tr>
+				</table>
+				<h:commandLink value="Logout"
+					action="#{userController.doLogout()}" />
+			</h:form>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>
+</html>
