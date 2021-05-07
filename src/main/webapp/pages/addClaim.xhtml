@@ -40,9 +40,8 @@
                     </div>
                     <h6 class="font-weight-bold pt-4 pb-1">Description:</h6>
                     <h:inputTextarea value="#{claimController.claim.descriptionClaim}" class="border p-3 w-100" row="3" col="10" required="true" id="description" label="Description"/>
-                    <h:message for="description" errorClass="erreur" style = "color:red"/>
+                    <h:message for="btn" style = "color:red"/>
                     <h:commandButton id="btn" value="Add Claim" action="#{claimController.addClaim()}" styleClass="btn btn-primary d-block mt-2"/>
-
             </fieldset>
         </h:form>
     </div>

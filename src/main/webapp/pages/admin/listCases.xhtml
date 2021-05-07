@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/adminTemplate.xhtml"
+	
+      	>
+	<ui:param name="page_name" value="Employees" />
+	<ui:define name="contentConnected">
+		<div id="layoutSidenav_content">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                DataTable Example
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <main>
+			
+			<div class="card-body">
+				<div class="table-responsive">
+					<h:form>
+						<h:dataTable value="#{employeeController.cases}" var="case"
+							border="1" class="table table-bordered"
+							id="dataTable" width="100%" cellspacing="0">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="benefitsType" />
+								</f:facet>
+								<h:outputText value="#{case.benefitsType}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Employee chagre" />
+								</f:facet>
+								<h:outputText value="#{case.fkEmployee.idEmployee}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Status" />
+								</f:facet>
+								<h:outputText value="#{case.status}" />
+							</h:column>	
+							<h:column>
+							<f:facet name="header"><h:outputText value="Add contract" /></f:facet>
+							<h:commandButton action="#{employeeController.AffectContract(employee.idEmployee)}"
+							value="Add conract" />
+							</h:column>
+										
+					</h:dataTable>
+					</h:form>
+					
+							
+				</div>
+				
+			</div>
+			</main>
+                                </div>
+                            </div>
+                        </div>
+
+</div>
+	</ui:define>
+</ui:composition>

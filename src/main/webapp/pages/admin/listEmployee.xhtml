@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/template/adminTemplate.xhtml">
+		
+	<ui:param name="page_name" value="Employees" />
+	<ui:define name="contentConnected">
+	
+	<h:body onload="#{employeeController.searchEmployee()}">
+		<div id="layoutSidenav_content">
+			<main>
+			
+			<div class="card-body">
+				<div class="table-responsive">
+				
+				<h:form 
+				class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+				<div class="input-group">
+					<h:inputText value="#{employeeController.e.usernameEmployee}"
+						class="form-control" 
+						id="userName" label="userName" >
+						 <p:ajax update="userName" />
+						</h:inputText>
+					<div class="input-group-append">
+					<h:commandButton id="addbtn" value="Search"
+						action="#{employeeController.searchEmployee()}"
+						styleClass="btn btn-primary" />
+					</div>
+				</div>
+				<br>
+				</br>
+				<br>
+				</br>
+				<h:dataTable value="#{employeeController.filteremploye}" var="search"
+							border="1" class="table table-bordered"
+							id="dataTable" width="100%" cellspacing="0">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Username" />
+								</f:facet>
+								<h:outputText value="#{search.usernameEmployee}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Role" />
+								</f:facet>
+								<h:outputText value="#{search.role}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Absenteisme" />
+								</f:facet>
+								<h:outputText value="#{search.absenteeismRate}" />
+							</h:column>	
+							<h:column>
+							<f:facet name="header"><h:outputText value="Archive" /></f:facet>
+							<h:commandButton  action="#{employeeController.archiveEmployee(search.idEmployee)}"
+							value="Archive" class="btn btn-danger"/>
+							</h:column>
+							<h:column>
+							<f:facet name="header"><h:outputText value="Update" /></f:facet>
+							<h:commandButton action="#{employeeController.showFormUpdate(search.idEmployee)}"
+							value="Update" class="btn btn-primary"/>
+							</h:column>
+							<h:column>
+							<f:facet name="header"><h:outputText value="Cases" /></f:facet>
+							<h:commandButton look="primary" action="#{employeeController.showCasesByEmployeeId(search.idEmployee)}"
+							value="Cases" class="btn btn-primary"/>
+							</h:column>
+							</h:dataTable>
+							
+							</h:form>
+		
+		
+		
+		
+			
+	
+		
+			
+			
+
+					
+							
+				</div>
+				
+			</div>
+			</main>
+		</div>
+		</h:body>
+	</ui:define>
+</ui:composition>

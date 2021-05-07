@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+	<ui:param name="page_name" value="addClaim" />
+
+	<ui:define name="contentConnected">
+		<main class="main-content">
+		<div class="page">
+			<div class="container">
+						<div class="progress">
+							<div class="progress-bar bg-info" role="progressbar"
+								style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+								aria-valuemax="100">Halfway through</div>
+						</div>
+				<h3 class="entry-title">Choose your own insurance plan</h3>
+				<p>
+					We as <b>Saturn</b> are implementing solutions that support the
+					economic advancement of our customers. The tools, technology and
+					processes we create integrate insurance with risk management to
+					increase affordability while maintaining commercial viability.
+				</p>
+
+				<div class="filter-links filterable-nav">
+					<select class="mobile-filter">
+						<option value="*">Show all</option>
+						<option value=".skyscraper">Medium Insurance</option>
+						<option value=".shopping-center">Large Insurance</option>
+						<option value=".apartment">All Risks</option>
+					</select> <strong>Select Category: </strong> <a href="#"
+						class="current wow fadeInRight" data-filter="*">Show all</a> <a
+						href="#" class="wow fadeInRight" data-wow-delay=".2s"
+						data-filter=".skyscraper">Medium Insurance</a> <a href="#"
+						class="wow fadeInRight" data-wow-delay=".4s"
+						data-filter=".shopping-center">Large Insurance</a> <a href="#"
+						class="wow fadeInRight" data-wow-delay=".6s"
+						data-filter=".apartment">All Risks</a>
+				</div>
+
+				<div class="filterable-items">
+					<div class="insurance-item filterable-item shopping-center">
+						<div class="insurance-content">
+							<div class="insurance-icon">
+								<i class="fas fa-store"></i>
+							</div>
+							<h3 class="insurance-title">Property Insurance</h3>
+							<p>
+								- COMPREHENSIVE COVERAGE <br /> - COLLISION COVERAGE<br /> -
+								RENTAL REIMBURSMENT
+							</p>
+							<h:link outcome="addContract" class="button">
+									<f:param name="rank" value="2" />
+									<f:param name="premium" value="19.46" />
+							Ask for a quote</h:link>
+						</div>
+					</div>
+
+
+					<div class="insurance-item filterable-item skyscraper">
+						<div class="insurance-content">
+							<div class="insurance-icon">
+								<i class="fas fa-car-crash"></i>
+							</div>
+							<h3 class="insurance-title">Vehicle Insurance</h3>
+							<p>
+								- COMPREHENSIVE COVERAGE <br /> - COLLISION COVERAGE<br /> -
+								RENTAL REIMBURSMENT
+							</p>
+							<h:link outcome="addContract" class="button">
+									<f:param name="rank" value="2" />
+									<f:param name="premium" value="13.02" />
+							Ask for a quote</h:link>
+						</div>
+					</div>
+
+					<div class="insurance-item filterable-item apartment">
+						<div class="insurance-content">
+							<div class="insurance-icon">
+								<i class="fas fa-ambulance"></i>
+							</div>
+							<h3 class="insurance-title">Medical Insurance 24</h3>
+							<p>
+								- COMPREHENSIVE COVERAGE <br /> - PERSONAL INJURY PROTECTION<br />
+								- 60% COVERAGE and 40% DEDUCTABLES
+							</p>
+							<h:link outcome="addContract" class="button">
+									<f:param name="rank" value="1" />
+									<f:param name="premium" value="0" />
+							Ask for a quote</h:link>
+						</div>
+					</div>
+
+
+
+
+				</div>
+			</div>
+		</div>
+		</main>
+	</ui:define>
+</ui:composition>

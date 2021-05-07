@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:param name="page_name" value="Accueil" />
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="contentConnected">
+			<div class="container">
+				<!-- BEGIN : TP1 JSF Introduction Login -->
+				<h:panelGroup columns="2">
+					<h:form id="creditForm" class="needs-validation">
+					<fieldset class="border border-gary p-4 mb-5">
+						<div class="row">
+                        <div class="col-lg-12">
+                            <h3>Add a Credit</h3>
+                        </div>
+                        <div class="col-lg-6">
+                            <h6 class="font-weight-bold pt-4 pb-1">Amount Credit:</h6>
+                            <h:inputText value="#{creditController.credit.amountCredit}" class="form-control" required="true" id="creditValue" label="Credit Value" type="number">
+                            </h:inputText>
+                            <h:message for="creditValue" errorClass="erreur" style = "color:red"/>
+                        </div>
+                        <div class="col-lg-12">
+								<h:commandButton id="btn" value="Add Credit"
+										action="#{creditController.addCredit()}" styleClass="btn
+										btn-transparent" />
+						</div>
+						</div>
+					</fieldset>
+					</h:form>
+				</h:panelGroup>
+			</div>
+	</ui:define>
+</ui:composition>
+</html>

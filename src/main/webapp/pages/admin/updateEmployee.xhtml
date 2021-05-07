@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/adminTemplate.xhtml">
+	<ui:param name="page_name" value="addEmployee" />
+	<ui:define name="contentConnected">
+
+
+
+		<div id="layoutSidenav_content">
+		<div class="container">
+			<h:form id="employeeForm" class="needs-validation">
+				<!-- Post Your ad start -->
+				<fieldset class="border border-gary p-4 mb-5">
+					<div class="row">
+						<div class="col-lg-12">
+							<h3>Update an Employee</h3>
+						</div>
+						
+						<h6 class="font-weight-bold pt-4 pb-1">Login:</h6>
+					<h:inputText value="#{employeeController.e.usernameEmployee}"
+						class="border p-3 w-100" row="3" col="10" required="true"
+						id="userName" label="userName" />
+					<h:message for="userName" errorClass="erreur" style="color:red" />
+					
+					   <h6 class="font-weight-bold pt-4 pb-1">Password:</h6>
+					<h:inputText value="#{employeeController.e.password}"
+						class="border p-3 w-100" row="3" col="10" required="true"
+						id="pwd" label="pwd" />
+					<h:message for="pwd" errorClass="erreur" style="color:red" />
+					
+					<h6 class="font-weight-bold pt-4 pb-1">Last name:</h6>
+					<h:inputText value="#{employeeController.e.lNameEmployee}"
+						class="border p-3 w-100" row="3" col="10" required="true"
+						id="lastName" label="lastName" />
+					<h:message for="lastName" errorClass="erreur" style="color:red" />
+					
+					<h6 class="font-weight-bold pt-4 pb-1">First name:</h6>
+					<h:inputText value="#{employeeController.e.fNameEmployee}"
+						class="border p-3 w-100" row="3" col="10" required="true"
+						id="firstName" label="firstName" />
+					<h:message for="firstName" errorClass="erreur" style="color:red" />
+					
+					<h6 class="font-weight-bold pt-4 pb-1">Email Address:</h6>
+					<h:inputText value="#{employeeController.e.mailEmployee}"
+						class="border p-3 w-100" row="3" col="10" required="true"
+						id="email" label="email" requiredMessage="le champ email est obligatoire"
+						validatorMessage="le mail doit suivre le format: *@*.*"  />
+					<h:message for="email" errorClass="erreur" style="color:red" />
+					
+					<h6 class="font-weight-bold pt-4 pb-1">CIN:</h6>
+					<h:inputText value="#{employeeController.e.CIN}"
+						class="border p-3 w-100" row="3" col="10" required="true"
+						id="cin" label="cin" />
+					<h:message for="cin" errorClass="erreur" style="color:red" />
+					
+						<h6 class="font-weight-bold pt-4 pb-1">Phone number:</h6>
+					<h:inputText value="#{employeeController.e.phoneEmployee}"
+						class="border p-3 w-100" row="3" col="10" required="true"
+						id="phoneN" label="phoneN" />
+					<h:message for="phoneN" errorClass="erreur" style="color:red" />
+					
+					<h6 class="font-weight-bold pt-4 pb-1">Address:</h6>
+					<h:inputText value="#{employeeController.e.address}"
+						class="border p-3 w-100" row="3" col="10" required="true"
+						id="address" label="address" />
+					<h:message for="address" errorClass="erreur" style="color:red" />
+					
+					<h6 class="font-weight-bold pt-4 pb-1">Salary:</h6>
+					<h:inputText value="#{employeeController.e.salary}"
+						class="border p-3 w-100" row="3" col="10" required="true"
+						id="salary" label="salary" />
+					<h:message for="salary" errorClass="erreur" style="color:red" />
+					
+					<h6 class="font-weight-bold pt-4 pb-1">AbsenteismeRate:</h6>
+					<h:inputText value="#{employeeController.e.absenteeismRate}"
+						class="border p-3 w-100" row="3" col="10" required="true"
+						id="absence" label="absence" />
+					<h:message for="absence" errorClass="erreur" style="color:red" />
+					
+						
+							<h:selectOneMenu value="#{employeeController.e.role}"
+								class="border p-3 w-100" required="true"
+								id="role" label="role">
+								<h6 class="font-weight-bold pt-4 pb-1">Choose the Role:</h6>
+								<f:selectItem itemLabel="" itemValue="#{null}" />
+								<f:selectItems value="#{employeeController.roles}" class="w-100" />
+							</h:selectOneMenu>
+							<h:message for="role" errorClass="erreur" style="color:red" />
+						
+									
+						
+
+							<h:selectBooleanCheckbox value="#{employeeController.e.visibility}"
+								class="border p-3 w-100" required="true"
+								id="visibility" label="visibility">
+							<h6 class="font-weight-bold pt-4 pb-1">Actif/inactif:</h6>
+								
+							</h:selectBooleanCheckbox>
+							<h:message for="visibility" errorClass="erreur" style="color:red" />
+						
+					</div>
+					
+
+
+					<h:commandButton id="addbtn" value="Update Employee"
+						action="#{employeeController.addEmployee()}"
+						styleClass="btn btn-primary d-block mt-2" />
+
+				</fieldset>
+			</h:form>
+		</div>
+</div>
+
+
+	</ui:define>
+</ui:composition>

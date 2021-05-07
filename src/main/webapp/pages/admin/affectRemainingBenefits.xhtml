@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/template/adminTemplate.xhtml">
+	<ui:param name="page_name" value="Connexion" />
+	<ui:define name="contentConnected">
+	
+		<div id="layoutSidenav_content">
+			<div class="card-body">
+				<div class="table-responsive">
+					<h:form>
+						<a style="display:none;">#{caseController.showAllRemainingCases()}</a>
+					
+						<h:dataTable value="#{caseController.casesInsurance}" var="case"
+							border="1" class="table table-bordered" id="dataTable"
+							width="100%" cellspacing="0">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Client name" />
+								</f:facet>
+								<h:outputText value="#{case.fkContract.fkClient.lNameClient} #{case.fkContract.fkClient.fNameClient}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Benefits" />
+								</f:facet>
+								<h:outputText value="#{case.benefits}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Date of Claim" />
+								</f:facet>
+								<h:outputText value="#{case.fkClaim.claimDate}" />
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Remaining benefits" />
+								</f:facet>
+								<h:outputText value="#{case.remainingBenefits}" />
+							</h:column>
+							
+													
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Date of Claim" />
+								</f:facet>
+								<h:outputText value="#{case.fkClaim.claimDate}" />
+							</h:column>
+							
+							<h:column>
+							<f:facet name="header"><h:outputText value="Action" /></f:facet>
+							<h:commandButton action="#{caseController.affectRemaining(case.idCase)}"
+							value="Affect" class="btn btn-primary d-block mt-2" id="dialogClickBtn">
+							
+							</h:commandButton>
+							</h:column>
+						</h:dataTable>
+					</h:form>
+					</div>
+					<c:if test="#{caseController.test == false}">
+               	    <h:outputText value="Too Early To Affect The Remaining Benefits" style="color:red"></h:outputText>
+        			</c:if>		 
+			</div>
+			</div>
+	</ui:define>
+</ui:composition>

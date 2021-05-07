@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui" template="/template/template.xhtml">
+	<ui:param name="page_name" value="Connexion" />
+	<ui:define name="contentConnected">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 offset-md-1 col-lg-3 offset-lg-0">
+					<div class="sidebar">
+						<!-- User Widget -->
+						<div class="widget user">
+							<!-- User Image -->
+							<div class="image d-flex justify-content-center">
+								<img src="#{resource['images/user/user-thumb.jpg']}" alt=""
+									class="" />
+							</div>
+							<!-- User Name -->
+							<h:outputText value="Welcome #{userController.c.usernameClient}" />
+						</div>
+						<!-- Dashboard Links -->
+						<div class="widget user-dashboard-menu">
+							<ul>
+								<li ><a> <i class="fa fa-user"></i>My
+										profile
+								</a></li>
+								<li><a href="dashboard-archived-ads.html"><i
+										class="fa fa-file-archive-o"></i>My cases<span>#{userController.c.usernameClient}</span></a>
+								</li>
+								<li class="active"><h:link outcome="/pages/admin/propertyList" ><i
+									class="fa fa-file-contract"></i>My contracts<span>#{userController.c.usernameClient}</span></h:link>>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
+					<h:form>
+						<b:dataTable value="#{InsuredPropertyController.properties}"
+							var="property">
+							<b:dataTableColumn value="#{property.propertyValue}" />
+							<b:dataTableColumn value="#{property.propertyType}" />
+							<b:dataTableColumn label="Update">
+								<b:commandButton look="primary" action="#" value="Update" />
+							</b:dataTableColumn>
+							<b:dataTableColumn label="Delete">
+								<b:commandButton look="danger"
+									action="#{InsuredPropertyController.archiveInsuredProperty(property.idProperty)}"
+									value="Delete" />
+							</b:dataTableColumn>
+						</b:dataTable>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

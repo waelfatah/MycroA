@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/layout.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:param name="page_name" value="updateCredit" />
+
+
+	<ui:param name="page_name" value="Accueil" />
+
+	<ui:define name="updateCredit">
+
+		<h:outputText value="UPDATE FORM  " />
+		<br />
+		<br />
+		<h:panelGroup columns="2">
+			<h:form id="creditUpdateForm">
+				<tr>
+					<td><h:outputText value="idCredit"></h:outputText></td>
+					<td><h:inputText value="#{creditController.credit.idCredit}"></h:inputText></td>
+				</tr>
+				<br />
+				<br />
+
+				<tr>
+					<td><h:outputText value="startDateCredit"></h:outputText></td>
+					<td><h:inputText
+							value="#{creditController.credit.startDateCredit}">
+							<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+						</h:inputText></td>
+				</tr>
+				<br />
+				<br />
+
+				<tr>
+					<td><h:outputText value="dueDateCredit"></h:outputText></td>
+					<td><h:inputText
+							value="#{creditController.credit.dueDateCredit}">
+							<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+						</h:inputText></td>
+				</tr>
+				<br />
+				<br />
+				<tr>
+					<td><h:outputText value="amountRemaining"></h:outputText></td>
+					<td><h:inputText
+							value="#{creditController.credit.amountRemaining}"></h:inputText></td>
+				</tr>
+
+				<br />
+				<br />
+				<tr>
+					<td><h:outputText value="amountCredit"></h:outputText></td>
+					<td><h:inputText
+							value="#{creditController.credit.amountCredit}"></h:inputText></td>
+				</tr>
+
+				<br />
+				<br />
+				<tr>
+					<td><h:outputText value="statut"></h:outputText></td>
+					<td><h:inputText value="#{creditController.credit.statut}"></h:inputText></td>
+				</tr>
+				<br />
+				<br />
+
+				<tr>
+					<td colspan="2"><h:commandButton value="Update Credit"
+							action="#{creditController.updateCredit()}" /></td>
+				</tr>
+
+
+
+
+			</h:form>
+		</h:panelGroup>
+
+	</ui:define>
+</ui:composition>

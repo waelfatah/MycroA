@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/adminTemplate.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:param name="page_name" value="AccueilEMP" />
+	<ui:define name="contentConnected">
+		<div id="layoutSidenav_content">
+			<div class="card-body">
+				<div class="table-responsive">
+
+					<h:panelGroup columns="2">
+
+
+
+						<br />
+						<br />
+						<h:form>
+
+
+
+							<h:dataTable class="table table-bordered"
+								value="#{creditController.credit2}" var="credit" border="2">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="id credit" />
+									</f:facet>
+									<h:outputText value="#{credit.idCredit}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="amountCredit" />
+									</f:facet>
+									<h:outputText value="#{credit.amountCredit}" />
+								</h:column>
+
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="amountRemaining" />
+									</f:facet>
+									<h:outputText value="#{credit.amountRemaining}" />
+								</h:column>
+
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="startDateCredit" />
+									</f:facet>
+									<h:outputText value="#{credit.startDateCredit}" />
+								</h:column>
+								<h:column>
+
+
+									<f:facet name="header">
+										<h:outputText value="statut" />
+									</f:facet>
+									<h:outputText value="#{credit.statut}" />
+								</h:column>
+
+
+
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="dueDateCredit" />
+									</f:facet>
+									<h:outputText value="#{credit.dueDateCredit}" />
+								</h:column>
+
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="visibility" />
+									</f:facet>
+									<h:outputText
+										value="#{credit.visibility == true ? 'yes' : 'No'}" />
+
+								</h:column>
+
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Action" />
+									</f:facet>
+									<h:commandButton
+										action="#{creditController.archiveCredit(credit.idCredit)}"
+										value="archive" />
+								</h:column>
+
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Action" />
+									</f:facet>
+									<h:commandButton
+										action="#{creditController.showFormUpdate(credit.idCredit)}"
+										value="update" />
+								</h:column>
+
+
+
+
+
+
+
+							</h:dataTable>
+						</h:form>
+					</h:panelGroup>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

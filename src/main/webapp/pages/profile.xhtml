@@ -23,10 +23,17 @@
 					<!-- Dashboard Links -->
 					<div class="widget user-dashboard-menu">
 						<ul>
-							<li class="active"><a>
-							<i class="fa fa-user"></i>My profile</a></li>
+							<li class="active">
+								<h:link outcome="/pages/profile" class="nav-link"><i class="fa fa-user"></i>&#160; My profile</h:link>
+							</li>
 							<li>
-								<a href="dashboard-archived-ads.html"><i class="fa fa-file-archive-o"></i>My cases<span>#{userController.c.usernameClient}</span></a>
+								<h:link outcome="/pages/viewProgressCases" class="nav-link"><i class="fa fa-file-archive-o"></i>&#160; My Cases<span>#{caseController.getCountCasesPerEmployee()}</span></h:link>
+							</li>
+							<li>
+								<h:link outcome="/pages/viewAllCreditFront" value="" class="nav-link"><i class="fa fa-money" aria-hidden="true"></i>&#160; My Credit<span>#{creditController.getCountCreditPerUser()}</span></h:link>
+							</li>
+							<li>
+								<h:link outcome="/pages/admin/contractList"><i class="fa fa-file-contract"></i>&#160; My contracts<span>#{contractController.countNumberofContractsPerUser(userController.c.CIN)}</span></h:link>
 							</li>
 						</ul>
 					</div>

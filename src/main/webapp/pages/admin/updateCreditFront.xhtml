@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/adminTemplate.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:param name="page_name" value="updateCredit" />
+
+
+	<ui:param name="page_name" value="Accueil" />
+
+	<ui:define name="contentConnected">
+		<div id="layoutSidenav_content">
+			<div class="card-body">
+				<div class="table-responsive">
+
+
+					<h:panelGroup columns="2">
+
+
+
+						<h:form id="creditUpdateForm">
+					<fieldset class="border border-gary p-4 mb-5">
+					<div class="row">
+									<div class="col-lg-12">
+										<h3>UPDATE FORM</h3>
+									
+									
+									<div class="col-lg-2">
+										<h6 class="font-weight-bold pt-4 pb-1">idCredit:</h6>
+										<h:inputText value="#{creditController.credit.idCredit}"
+											class="form-control" required="true" id="idCredit"
+											label="idCredit" type="number">
+										</h:inputText>
+										<h:message for="idCredit" errorClass="erreur"
+											style="color:red" />
+									</div>
+									
+									
+									
+									
+									
+									</div>
+									<div class="col-lg-2">
+										<h6 class="font-weight-bold pt-4 pb-1">startDateCredit :</h6>
+										<h:inputText value="#{creditController.credit.startDateCredit}"
+											class="form-control" required="true" id="startDateCredit"
+											label="Credit Value" >
+								        <f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+										</h:inputText>
+										<h:message for="creditValue" errorClass="erreur"
+											style="color:red" />
+									
+									</div>
+					<div class="col-lg-12">
+										<h6 class="font-weight-bold pt-4 pb-1">dueDateCredit :</h6>
+										<h:inputText value="#{creditController.credit.dueDateCredit}"
+											class="form-control" required="true" id="dueDateCredit"
+											label="dueDateCredit" >
+								        <f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+										</h:inputText>
+										<h:message for="creditValue" errorClass="erreur"
+											style="color:red" />
+									
+									</div>
+									
+									
+									<div class="col-lg-12">
+										<h6 class="font-weight-bold pt-4 pb-1">amountRemaining :</h6>
+										<h:inputText value="#{creditController.credit.amountRemaining}"
+											class="form-control" required="true" id="creditValue"
+											label="Credit Value" type="number">
+								        </h:inputText>
+										<h:message for="creditValue" errorClass="erreur"
+											style="color:red" />
+									
+									</div>
+									
+									<div class="col-lg-12">
+										<h6 class="font-weight-bold pt-4 pb-1">amountCredit :</h6>
+										<h:inputText value="#{creditController.credit.amountCredit}"
+											class="form-control" required="true" id="amountCredit"
+											label="amountCredit" type="number">
+								        </h:inputText>
+										<h:message for="creditValue" errorClass="erreur"
+											style="color:red" />
+									
+									</div>
+									
+									
+									<div class="col-lg-12">
+										<h6 class="font-weight-bold pt-4 pb-1"> statut :</h6>
+										<h:inputText value="#{creditController.credit.statut}"
+											class="form-control" required="true" id="statut"
+											label="statut" >
+								        </h:inputText>
+										<h:message for="creditValue" errorClass="erreur"
+											style="color:red" />
+									
+									</div>
+					
+					
+					<div class="col-lg-12">
+										<h:commandButton value="Update Credit"
+										action="#{creditController.updateCredit()}" />>
+									</div>
+					
+					
+					
+					</div>
+					
+
+							<!-- <tr>
+								<td><h:outputText value="startDate  Credit"></h:outputText></td>
+								<td><h:inputText
+										value="#{creditController.credit.startDateCredit}">
+										<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+									</h:inputText></td>
+							</tr>
+							<br />
+							<br />
+
+							<tr>
+								<td><h:outputText value="dueDate  Credit"></h:outputText></td>
+								<td><h:inputText
+										value="#{creditController.credit.dueDateCredit}">
+										<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+									</h:inputText></td>
+							</tr>
+							<br />
+							<br />
+							<tr>
+								<td><h:outputText value="amountRemaining"></h:outputText></td>
+								<td><h:inputText
+										value="#{creditController.credit.amountRemaining}"></h:inputText></td>
+							</tr>
+
+							<br />
+							<br />
+							<tr>
+								<td><h:outputText value="amountCredit"></h:outputText></td>
+								<td><h:inputText
+										value="#{creditController.credit.amountCredit}"></h:inputText></td>
+							</tr>
+
+							<br />
+							<br />
+							<tr>
+								<td><h:outputText value="statut"></h:outputText></td>
+								<td><h:inputText value="#{creditController.credit.statut}"></h:inputText></td>
+							</tr>
+							<br />
+							<br />
+
+							<tr>
+								<td colspan="2"><h:commandButton value="Update Credit"
+										action="#{creditController.updateCredit()}" /></td>
+							</tr> -->
+
+
+
+</fieldset>
+						</h:form>
+					</h:panelGroup>
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>

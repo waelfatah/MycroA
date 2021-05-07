@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="addClaim" />
+	<ui:define name="contentConnected">
+
+
+
+
+		<div class="container">
+						<div class="progress">
+							<div class="progress-bar bg-info" role="progressbar"
+								style="width: 75%" aria-valuenow="75" aria-valuemin="0"
+								aria-valuemax="100">Almost there !</div>
+						</div>
+			<h:form id="form" class="needs-validation">
+				<!-- Post Your ad start -->
+				<fieldset class="border border-gary p-4 mb-5">
+					<div class="row">
+						<div class="col-lg-12">
+							<h3>Add a contract</h3>
+						</div>
+						<div class="col-lg-6">
+							<h6 class="font-weight-bold pt-4 pb-1">Start Date:</h6>
+							<h:inputText
+								value="#{contractController.contract.startDateContract}"
+								class="form-control" t:type="date" t:max="2020-15-05"
+								required="true" id="startdate" label="Date">
+								<f:convertDateTime pattern="yyyy-MM-dd" />
+							</h:inputText>
+							<h:message for="startdate" errorClass="erreur" style="color:red" />
+						</div>
+						<div class="col-lg-6">
+							<h6 class="font-weight-bold pt-4 pb-1">Due Date:</h6>
+							<h:inputText
+								value="#{contractController.contract.dueDateContract}"
+								class="form-control" t:type="date" t:min="2020-05-14" 
+								required="true" id="duedate" label="Date">
+								<f:convertDateTime pattern="yyyy-MM-dd" />
+							</h:inputText>
+							<h:message for="duedate" errorClass="erreur" style="color:red" />
+						</div>
+						<div class="col-lg-6">
+							<h:selectOneListbox value="#{contractController.idProperty}"
+								class="font-weight-bold pt-4 pb-1" required="true"
+								id="idProperty" label="Property">
+								<h6 class="font-weight-bold pt-4 pb-1">Choose the Property:</h6>
+								<f:selectItem itemLabel="" itemValue="#{null}" />
+								<f:selectItems var="property" value="#{InsuredPropertyController.properties}" itemValue="#{property.idProperty}" class="w-100" />
+							</h:selectOneListbox>
+							<h:message for="idProperty" errorClass="erreur" style="color:red" />
+						</div>
+					</div>
+					<!-- #{contractController.contract.setContractRank(param['rank'])} -->
+					<h6 class="font-weight-bold pt-4 pb-1">Clauses:</h6>
+					<h:inputText value="#{contractController.contract.clauses}"
+						class="border p-3 w-100" row="3" col="10" required="true"
+						id="description" label="Description" />
+					<h:message for="description" errorClass="erreur" style="color:red" />
+					<h:commandButton id="btn" value="Add Contract"
+						action="#{contractController.addContract(contractController.idProperty , userController.c.CIN)}"
+						styleClass="btn btn-primary d-block mt-2" >
+						</h:commandButton>
+				</fieldset>
+			</h:form>
+		</div>
+
+
+
+	</ui:define>
+</ui:composition>

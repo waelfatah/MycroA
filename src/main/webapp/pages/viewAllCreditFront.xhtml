@@ -1,0 +1,68 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml" xmlns:p="http://primefaces.org/ui">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="contentConnected">
+	<div class="card-body">
+	<div class="table-responsive">
+		<h:panelGroup columns="2">
+			<h:form id="creditForm" class="test">
+					<h:form>
+					<h:dataTable class="table table-bordered" value="#{creditController.credits}" var="credit"
+						border="2">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="amountCredit" />
+							</f:facet>
+							<h:outputText value="#{credit.amountCredit}" />
+						</h:column>
+
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="amountRemaining" />
+							</f:facet>
+							<h:outputText value="#{credit.amountRemaining}" />
+						</h:column>
+
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="startDateCredit" />
+							</f:facet>
+							<h:outputText value="#{credit.startDateCredit}" />
+						</h:column>
+						<h:column>
+
+
+							<f:facet name="header">
+								<h:outputText value="statut" />
+							</f:facet>
+							<h:outputText value="#{credit.statut}" />
+						</h:column>
+
+
+
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="dueDateCredit" />
+							</f:facet>
+							<h:outputText value="#{credit.dueDateCredit}" />
+						</h:column>
+					</h:dataTable>
+				</h:form>
+				<br />
+				<br />
+				<h:link id="btn" outcome="/pages/addCredit" value="add Credit" class="btn
+										btn-transparent"/>
+			</h:form>
+			
+
+		</h:panelGroup>
+		</div>
+		</div>
+	</ui:define>
+</ui:composition>
