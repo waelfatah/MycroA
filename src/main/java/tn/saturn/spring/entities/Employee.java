@@ -39,7 +39,7 @@ public class Employee implements Serializable {
 	
 	
 	@Column(name="salary")
-	private Float salary;
+	private Double salary;
 	
 	
 	@Column(name="usernameEmployee")
@@ -61,6 +61,148 @@ public class Employee implements Serializable {
 
 	@Column(name="visibility")
 	private boolean visibility;
+	
+	@Column(name="Departement")
+	private String Departement;
+
+	public int getIdEmployee() {
+		return idEmployee;
+	}
+
+	public void setIdEmployee(int idEmployee) {
+		this.idEmployee = idEmployee;
+	}
+
+	public String getfNameEmployee() {
+		return fNameEmployee;
+	}
+
+	public void setfNameEmployee(String fNameEmployee) {
+		this.fNameEmployee = fNameEmployee;
+	}
+
+	public String getlNameEmployee() {
+		return lNameEmployee;
+	}
+
+	public void setlNameEmployee(String lNameEmployee) {
+		this.lNameEmployee = lNameEmployee;
+	}
+
+	public long getPhoneEmployee() {
+		return phoneEmployee;
+	}
+
+	public void setPhoneEmployee(long phoneEmployee) {
+		this.phoneEmployee = phoneEmployee;
+	}
+
+	public long getCIN() {
+		return CIN;
+	}
+
+	public void setCIN(long cIN) {
+		CIN = cIN;
+	}
+
+	public String getMailEmployee() {
+		return mailEmployee;
+	}
+
+	public void setMailEmployee(String mailEmployee) {
+		this.mailEmployee = mailEmployee;
+	}
+
+	public Double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Double salary) {
+		this.salary = salary;
+	}
+
+	public String getUsernameEmployee() {
+		return usernameEmployee;
+	}
+
+	public void setUsernameEmployee(String usernameEmployee) {
+		this.usernameEmployee = usernameEmployee;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public int getAbsenteeismRate() {
+		return absenteeismRate;
+	}
+
+	public void setAbsenteeismRate(int absenteeismRate) {
+		this.absenteeismRate = absenteeismRate;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public boolean isVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(boolean visibility) {
+		this.visibility = visibility;
+	}
+
+	public String getDepartement() {
+		return Departement;
+	}
+
+	public void setDepartement(String departement) {
+		Departement = departement;
+	}
+
+	public Employee(int idEmployee, String fNameEmployee, String lNameEmployee, long phoneEmployee, long cIN,
+			String mailEmployee, Double salary, String usernameEmployee, String password, String address,
+			int absenteeismRate, Role role, boolean visibility, String departement) {
+		super();
+		this.idEmployee = idEmployee;
+		this.fNameEmployee = fNameEmployee;
+		this.lNameEmployee = lNameEmployee;
+		this.phoneEmployee = phoneEmployee;
+		CIN = cIN;
+		this.mailEmployee = mailEmployee;
+		this.salary = salary;
+		this.usernameEmployee = usernameEmployee;
+		this.password = password;
+		this.address = address;
+		this.absenteeismRate = absenteeismRate;
+		this.role = role;
+		this.visibility = visibility;
+		Departement = departement;
+	}
+	
+	
+	public Employee(){
+		super();
+		this.usernameEmployee = "";
+
+	}
 	
 	
 }

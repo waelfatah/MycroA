@@ -47,6 +47,7 @@ public class Claim implements Serializable {
 
 	public Claim() {
 		super();
+		this.visibility=true;
 	}
 
 	public Claim(ClaimType claimType, String descriptionClaim, boolean visibility) {

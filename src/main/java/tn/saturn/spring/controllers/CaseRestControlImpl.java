@@ -33,14 +33,7 @@ public class CaseRestControlImpl {
 			List<CaseInsurance> list = caseService.retrieveAllCases();
 			return list;
 			}
-	
-		// http://localhost:8081/SpringMVC/servlet/retrieve-all-uncompleted-cases
-			@GetMapping("/retrieve-uncompleted-cases")
-			@ResponseBody
-			public List<CaseInsurance> getAllUncompletedCases() {
-			List<CaseInsurance> list = caseService.retrieveAllUncompletedCases();
-			return list;
-			}
+
 		
 
 		// http://localhost:8081/SpringMVC/servlet/retrieve-all-completed-cases

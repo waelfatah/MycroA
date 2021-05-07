@@ -1,21 +1,20 @@
 package tn.saturn.spring.entities;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
 
 
-@Entity 
+@Entity(name ="CLIENT")
 @Table(name ="CLIENT")
 public class Client implements Serializable {
 	
@@ -36,7 +35,7 @@ public class Client implements Serializable {
 	private long phoneClient;
 	
 	@Column(name="CIN")
-	private long CIN;
+	private String CIN;
 	
 	@Column(name="mailClient")
 	private String mailClient;
@@ -64,17 +63,20 @@ public class Client implements Serializable {
 	@Column(name="visibility")
 	private boolean visibility;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="fkClient")
-	private List<Complaint> fkComplaints;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="fkClient")
-	private List<Credit> fkCredits;
-	
 	@OneToOne
 	private Balance fkBalance;
+	@Column(name="address")
+	@Enumerated(EnumType.STRING)
+	private Address address;
+	
 
-	
-	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 	
 	
 	public int getIdClient() {
@@ -109,11 +111,11 @@ public class Client implements Serializable {
 		this.phoneClient = phoneClient;
 	}
 
-	public long getCIN() {
+	public String getCIN() {
 		return CIN;
 	}
 
-	public void setCIN(long cIN) {
+	public void setCIN(String cIN) {
 		CIN = cIN;
 	}
 
@@ -173,7 +175,7 @@ public class Client implements Serializable {
 		this.password = password;
 	}
 
-	public boolean isVisibility() {
+	public boolean getVisibility() {
 		return visibility;
 	}
 
@@ -181,21 +183,6 @@ public class Client implements Serializable {
 		this.visibility = visibility;
 	}
 
-	public List<Complaint> getFkComplaints() {
-		return fkComplaints;
-	}
-
-	public void setFkComplaints(List<Complaint> fkComplaints) {
-		this.fkComplaints = fkComplaints;
-	}
-
-	public List<Credit> getFkCredits() {
-		return fkCredits;
-	}
-
-	public void setFkCredits(List<Credit> fkCredits) {
-		this.fkCredits = fkCredits;
-	}
 
 	public Balance getFkBalance() {
 		return fkBalance;
@@ -205,8 +192,8 @@ public class Client implements Serializable {
 		this.fkBalance = fkBalance;
 	}
 
-	public Client(String fNameClient, String lNameClient, long phoneClient, long cIN, String mailClient, int age,
-			String profession, Double salary, long rIB, String usernameClient, String password, boolean visibility) {
+	public Client(String fNameClient, String lNameClient, long phoneClient, String cIN, String mailClient, int age,
+			String profession, Double salary, long rIB, String usernameClient, String password) {
 		super();
 		this.fNameClient = fNameClient;
 		this.lNameClient = lNameClient;
@@ -219,12 +206,16 @@ public class Client implements Serializable {
 		RIB = rIB;
 		this.usernameClient = usernameClient;
 		this.password = password;
-		this.visibility = visibility;
+		this.visibility = true;
 	}
 
 	public Client() {
 		super();
+		this.visibility = true;
 	}
+	
+	
+	
 	
 	
 	

@@ -2,6 +2,7 @@ package tn.saturn.spring.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
-@Entity 
+@Entity(name ="CONTRACT") 
 @Table(name ="CONTRACT")
 public class Contract implements Serializable{
 
@@ -24,7 +25,7 @@ public class Contract implements Serializable{
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="idContract")
-	private Integer idContract; // Clé primaire
+	private int idContract; // Clé primaire
 	
 	@Column(name="startDateContract")
 	@Temporal (TemporalType.DATE)
@@ -41,21 +42,18 @@ public class Contract implements Serializable{
 	private Double premium;
 	
 	@Column(name="contractRank")
-	private Integer contractRank;
+	private int contractRank;
 	
 	@Column(name="visibility")
-	private Boolean visibility;
+	private boolean visibility;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Client fkClient;
 	
 	@OneToOne
 	private InsuredProperty fkInsuredProperty;
-
-
-
 	
-	
+
 	public int getIdContract() {
 		return idContract;
 	}
@@ -128,21 +126,21 @@ public class Contract implements Serializable{
 		this.fkInsuredProperty = fkInsuredProperty;
 	}
 
-
 	public Contract() {
+		
 	}
 
-	public Contract(Date startDateContract, Date dueDateContract, String clauses, Double premium, Integer contractRank,
-			Boolean visibility) {
+	public Contract(Date startDateContract, Date dueDateContract, String clauses, Double premium, int contractRank,
+			boolean visibility) {
+		super();
 		this.startDateContract = startDateContract;
 		this.dueDateContract = dueDateContract;
 		this.clauses = clauses;
 		this.premium = premium;
 		this.contractRank = contractRank;
 		this.visibility = visibility;
-
 	}
 
-
+	
 	
 }

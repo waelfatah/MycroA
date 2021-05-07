@@ -2,6 +2,10 @@ package tn.saturn.spring.services;
 
 import java.util.Date;
 import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -155,7 +159,7 @@ public class CaseServiceImpl implements ICaseService{
 	
 	//AFFECTER LE reste de l'argent au client PERIODE DE GRACE si le salaire est inferieur a 600 peut lui rendre directement l'argent sinon condition sur la date elle doit etre superieur a 2 mois
 	@SuppressWarnings("deprecation")
-	public void affectRemainingBenefits(Integer idCase){
+	public Boolean affectRemainingBenefits(Integer idCase){
 		CaseInsurance c = new CaseInsurance();
 		Client client = new Client();
 		c = caseRepository.findById(idCase).get();
@@ -169,21 +173,30 @@ public class CaseServiceImpl implements ICaseService{
 					balanceService.addAmount(c.getRemainingBenefits(),b);
 					c.setRemainingBenefits(0.0);
 					c.setStatus(2);
+					c.getFkClaim().setVisibility(false);
 					caseRepository.save(c);
 					emailService.sendEmailAmountReceived(c.getFkContract().getFkClient().getMailClient(), b.getAmount());
+					return true;
 				}else{
 					if (tempMonth>2 || tempYear>=1){
 						balanceService.addAmount(c.getRemainingBenefits(),b);
 						c.setRemainingBenefits(0.0);
 						c.setStatus(2);
+						c.getFkClaim().setVisibility(false);
 						caseRepository.save(c);
 						emailService.sendEmailAmountReceived(c.getFkContract().getFkClient().getMailClient(), b.getAmount());
+						return true;
 					}else{
-						System.out.println("Trop tot pour lui rendre l'argent");
+						FacesMessage facesMessage = new FacesMessage(
+								"Error : Too Early For The Remain benefits.");
+
+						FacesContext.getCurrentInstance().addMessage("form:btn", facesMessage);
+						return false;
 					}
 				}
 		}else{
 			System.out.println("Le status du dossier est erroné ou pas de beneficeTypes");
+			return false;
 		}
 	}
 	
@@ -214,25 +227,10 @@ public class CaseServiceImpl implements ICaseService{
 	
 	
 	
-	
-	//Fonction pour retrouver touts les dossiers INCOMPLETS
-	@Override
-	public List<CaseInsurance> retrieveAllUncompletedCases(){
-		List<CaseInsurance> Cases = (List<CaseInsurance>) caseRepository.getAllUncompletedCases();
-		for (CaseInsurance Case : Cases){
-			l.info("Case +++ :"+ Case);
-		}
-		return Cases;
-	}
-	
-	
 	//Fonction pour retrouver touts les dossiers COMPLETS
 	@Override
 	public List<CaseInsurance> retrieveAllCompletedCases(){
 		List<CaseInsurance> Cases = (List<CaseInsurance>) caseRepository.getAllCompletedCases();
-		for (CaseInsurance Case : Cases){
-			l.info("Case +++ :"+ Case);
-		}
 		return Cases;
 	}
 	
@@ -240,9 +238,6 @@ public class CaseServiceImpl implements ICaseService{
 	@Override
 	public List<CaseInsurance> retrieveAllWaitingCases(){
 		List<CaseInsurance> Cases = (List<CaseInsurance>) caseRepository.getAllWaitingCases();
-		for (CaseInsurance Case : Cases){
-			l.info("Case +++ :"+ Case);
-		}
 		return Cases;
 	}
 	

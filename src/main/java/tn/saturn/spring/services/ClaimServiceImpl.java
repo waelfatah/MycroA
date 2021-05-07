@@ -1,9 +1,6 @@
 package tn.saturn.spring.services;
 
 import java.util.List;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,16 +18,10 @@ public class ClaimServiceImpl implements IClaimService{
 	public ClaimRepository getClaimRepository() { return claimRepository; }
 	public void setClaimRepository(ClaimRepository claimRepository) { this.claimRepository = claimRepository; }
 	
-	
-	private static final Logger l = (Logger) LogManager.getLogger(ClaimServiceImpl.class);
-	
-	
+		
 	@Override
 	public List<Claim> retrieveAllClaims(){
 		List<Claim> claims = (List<Claim>) claimRepository.getAllClaims();
-		for (Claim claim : claims){
-			l.info("Claim +++ :"+ claim);
-		}
 		return claims;
 	}
 	
@@ -54,11 +45,7 @@ public class ClaimServiceImpl implements IClaimService{
 	
 	@Override
 	public Claim retrieveClaim(Integer id){
-		if(claimRepository.findById(id).isPresent()){
 			return claimRepository.findById(id).get();
-		}else{
-			return null;
-		}
 	}
 	
 	public void deleteClaims(Integer id){

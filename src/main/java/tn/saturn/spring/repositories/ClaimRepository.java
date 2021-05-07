@@ -14,8 +14,5 @@ public interface ClaimRepository extends CrudRepository<Claim, Integer>{
 	
 	
 	@Query("Select count(*) from Claim u WHERE u.claimType= ?1")
-		public int getCountClaimType(ClaimType claimType);
-	
-	
-		
+		public int getCountClaimType(ClaimType claimType);	
 }
