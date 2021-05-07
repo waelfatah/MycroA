@@ -31,11 +31,14 @@
 		<h:outputStylesheet
 			name="plugins/jquery-nice-select/css/nice-select.css" />
 		<!-- CUSTOM CSS -->
+		<h:outputStylesheet name="http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|"/>
+		<h:outputStylesheet name="fonts/font-awesome.min.css" />
+		<h:outputStylesheet name="fonts/lineo-icon/style.css"/>
 		<h:outputStylesheet name="css/style.css" />
 		<h:outputStylesheet name="css/all.css" />
 		<h:outputStylesheet name="fonts/font-awesome.min.css" />
 		<h:outputStylesheet name="fonts/lineo-icon/style.css" />
-
+		<h:outputStylesheet name="style1.css" />
 		<h:outputStylesheet
 			name="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
 			integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
@@ -53,7 +56,7 @@
 					<div class="navbar navbar-expand-lg navbar-light navigation">
 
 
-						<h:graphicImage url="#{resource['images/logo.png']}" width="150"
+						<h:graphicImage url="#{resource['images/mycroa.png']}" width="150"
 							height="150" />
 						<button class="navbar-toggler" type="button"
 							data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -63,7 +66,7 @@
 						</button>
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav ml-auto main-nav ">
-								<h:link outcome="/pages/index" value="Home" class="nav-link"/>
+								<h:link outcome="/pages/index" value="Home" class="nav-link" />
 								<li class="nav-item dropdown dropdown-slide"><a
 									class="nav-link dropdown-toggle" data-toggle="dropdown" href="">Dashboard<span><i
 											class="fa fa-angle-down"></i></span>
@@ -96,28 +99,32 @@
 										<a class="dropdown-item" href="blog.html">Blog</a>
 
 									</div></li>
-								<li class="nav-item dropdown dropdown-slide">
-								<h:link outcome="/pages/profile" value="My Profile" class="nav-link"/>
+								<li class="nav-item dropdown dropdown-slide"><h:link
+										outcome="/pages/profile" value="My Profile" class="nav-link" />
 								</li>
 							</ul>
 							<h:form>
-							<ul class="navbar-nav ml-auto mt-10">
-								<c:if test="#{userController.loggedIn}">
-									<li class="nav-item">
-									<h:commandLink action="#{userController.doLogout()}" value="Logout" styleClass="nav-link login-button"/>
-									</li>
-									<li class="nav-item">
-									<h:link outcome="/pages/viewContractForClaims" value="Add Claims" class="nav-link text-white add-button"><i
-											class="fa fa-plus-circle"></i></h:link></li>
-								</c:if>
-								<c:if test="#{userController.loggedIn == false}">
-									<li class="nav-item">
-									
-									<h:link outcome="/login" value="Login" styleClass="nav-link login-button"/>
-									
-									</li>
-								</c:if>
-							</ul>
+								<ul class="navbar-nav ml-auto mt-10">
+									<c:if test="#{userController.loggedIn}">
+										<li class="nav-item"><h:commandLink
+												action="#{userController.doLogout()}" value="Logout"
+												styleClass="nav-link login-button" /></li>
+										<li class="nav-item"><h:link outcome="#"
+												value="Add Claim" class="nav-link text-white add-button">
+												<i class="fa fa-plus-circle"></i>
+											</h:link></li>
+											
+										<li class="nav-item"><h:link
+												outcome="/pages/admin/property" 
+												class="nav-link text-white add-button">
+												<i class="fa fa-plus-circle"> </i>&#160; Choose a plan
+											</h:link></li>
+									</c:if>
+									<c:if test="#{userController.loggedIn == false}">
+										<li class="nav-item"><h:link outcome="/login"
+												value="Login" styleClass="nav-link login-button" /></li>
+									</c:if>
+								</ul>
 							</h:form>
 						</div>
 					</div>
@@ -126,7 +133,7 @@
 		</div>
 		<!--  Content -->
 		<c:if test="#{userController.loggedIn}">
-		<ui:insert name="contentConnected" />
+			<ui:insert name="contentConnected" />
 		</c:if>
 		<ui:insert name="content" />
 
@@ -138,7 +145,7 @@
 					<!-- About -->
 					<div class="block about">
 						<!-- footer logo -->
-						<img src="#{resource['images/logo.png']}" width="200" height="200"
+						<img src="#{resource['images/mycroa.png']}" width="200" height="200"
 							alt="" />
 					</div>
 				</div>
@@ -219,11 +226,13 @@
 						<!-- Social Icons -->
 						<ul class="social-media-icons text-right">
 							<li><a class="fa fa-facebook"
-								href="https://www.facebook.com/MycroA-107445394827138" target="_blank"></a></li>
+								href="https://www.facebook.com/MycroA-107445394827138"
+								target="_blank"></a></li>
 							<li><a class="fa fa-instagram"
 								href="https://www.instagram.com/mycroa/?hl=fr" target="_blank"></a></li>
 							<li><a class="fa fa-linkedin"
-								href="https://www.linkedin.com/in/mycroa-inc-167056211/" target="_blank"></a></li>
+								href="https://www.linkedin.com/in/mycroa-inc-167056211/"
+								target="_blank"></a></li>
 							<li><a class="fa fa-twitter"
 								href="https://twitter.com/mycroainsurance" target="_blank"></a></li>
 						</ul>
@@ -236,22 +245,6 @@
 				<a id="top" class="" href="#"><i class="fa fa-angle-up"></i></a>
 			</div>
 		</div>
-		
-		
-		
-		
-		<div class="py-4 bg-light mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2021</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
 
@@ -265,12 +258,14 @@
 		<h:outputScript name="plugins/tether/js/tether.min.js" />
 		<h:outputScript name="plugins/raty/jquery.raty-fa.js" />
 		<h:outputScript name="plugins/slick-carousel/slick/slick.min.js" />
-		<h:outputScript
-			name="plugins/jquery-nice-select/js/jquery.nice-select.min.js" />
+		<h:outputScript name="plugins/jquery-nice-select/js/jquery.nice-select.min.js" />
 		<h:outputScript name="plugins/fancybox/jquery.fancybox.pack.js" />
 		<h:outputScript name="plugins/smoothscroll/SmoothScroll.min.js" />
 		<h:outputScript name="plugins/google-map/gmap.js" />
 		<h:outputScript name="js/script.js" />
+		<h:outputScript name="js/jquery-1.11.1.min.js" />
+		<h:outputScript name="js/plugins.js" />
+		<h:outputScript name="js/app.js" />
 	</h:body>
 </f:view>
 </html>

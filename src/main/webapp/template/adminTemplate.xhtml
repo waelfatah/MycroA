@@ -46,14 +46,14 @@
 			<ul class="navbar-nav ml-auto ml-md-0">
 					<h:form>
 						<li class="nav-item">
-						<h:link outcome="/pages/admin/dashboard" value="" class="nav-link"><i class="fa fa-user fa-fw"></i></h:link>
+						<h:link outcome="/pages/admin/dashboard" value="" class="nav-link color: Dodgerblue;"><i class="fa fa-user fa-fw"></i>&#160;My Profile</h:link>
 						</li>
 					</h:form>
 			</ul>
 			<ul class="navbar-nav ml-auto ml-md-0">
 					<h:form>
 						<li class="nav-item">
-						<h:commandLink action="#{userController.doLogout()}" value="" styleClass="nav-link"><i class="fas fa-sign-out-alt"></i></h:commandLink>
+						<h:commandLink action="#{userController.doLogout()}" value="" styleClass="nav-link color: Dodgerblue;"><i class="fas fa-sign-out-alt"></i>&#160;Log Out</h:commandLink>
 						</li>
 					</h:form>
 			</ul>
@@ -69,6 +69,7 @@
 							<c:if test="#{userController.isExpertEmployee()}">
 								<h:form>
 									<div class="sb-sidenav-menu-heading">EXPERT</div>
+									<div class="sb-sidenav-menu-heading">Interfaces</div>
 										<li class="nav-item">
 										<h:link outcome="/pages/admin/viewAllNonAffectedCases" class="nav-link"><i class="far fa-file-archive"></i>&#160; Unaffected Cases</h:link>
 										</li>
@@ -79,6 +80,31 @@
 										<li class="nav-item">
 										<h:link outcome="/pages/admin/affectRemainingBenefits" class="nav-link"><i class="fas fa-money-check-alt"></i>&#160; Remaining Benefits</h:link>
 										</li>
+								</h:form>
+							</c:if>
+							
+							<c:if test="#{userController.isResponsableEmployee()}">
+							<h:form>
+								<div class="sb-sidenav-menu-heading">Manager Of Employees</div>
+								<div class="sb-sidenav-menu-heading">Interfaces</div>
+										<li class="nav-item">
+										<h:link outcome="/pages/admin/listEmployee" value=" View All Employees" class="nav-link"></h:link>
+										</li>
+										<li class="nav-item">
+										<h:link outcome="/pages/admin/addEmployee" value=" Add an Employee" class="nav-link"></h:link>
+										</li>
+								</h:form>
+							</c:if>
+							
+							<c:if test="#{userController.isEmployee()}">
+							<h:form>
+								<div class="sb-sidenav-menu-heading">EMPLOYEE</div>
+										<li class="nav-item">
+										<h:link outcome="/pages/admin/addCreditByEmp" value="Add Credit" class="nav-link"></h:link>
+										</li>
+										<li class="nav-item">
+										<h:link outcome="/pages/admin/viewAllClientCredit" value="view Credit" class="nav-link"></h:link>
+										</li>										
 								</h:form>
 							</c:if>
 							
